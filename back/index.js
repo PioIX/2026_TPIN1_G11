@@ -18,7 +18,7 @@ app.listen(port, function () {
 });
 
 // GET
-app.get("/getUsuario", async function (req, res) {
+app.get("/getUsuarios", async function (req, res) {
   console.log(req.query);
   const respuesta = await realizarQuery(`
         SELECT * FROM Usuarios;
@@ -36,7 +36,7 @@ app.get("/getEstadisticas", async function (req, res) {
   res.send(respuesta);
 });
 
-// POST - MODIFICAR despuesxd
+// POST - MODIFICAR lo del res
 app.post("/postUsuarios", async function (req, res) {
   console.log(req.body);
   let respuesta = await realizarQuery(
@@ -47,4 +47,19 @@ app.post("/postUsuarios", async function (req, res) {
       `INSERT INTO Usuarios(nombre, apellido, nombre_de_usuario, contraseña) VALUES ('${req.body.nombre}', '${req.body.apellido}', '${req.body.nombre_de_usuario}', '${req.body.contraseña}')`
     );
   }
+});
+
+app.post("/postEstadisticas", async function (req, res) {
+  console.log(req.body);
+  await realizarQuery(
+    `INSERT INTO Estadisticas(partidas_ganadas, partidas_perdidas, partidas_empatadas, porcentaje_victorias, id_usuario) VALUES (${req.body.partidas_ganadas}, ${req.body.partidas_perdidas}, ${req.body.partidas_empatadas}, ${req.body.porcentaje_victorias}, ${req.body.id_usuario})`
+  );
+});
+
+// PUT
+app.put("/putUsuarios", async function (req, res) {
+  console.log(req.body);
+  await realizarQuery(
+    `UPDATE Escuela SET calle = '${req.body.calle}', nivel = '${req.body.nivel}', privada = ${req.body.privada}, altura = ${req.body.altura} WHERE id = ${req.body.id}`
+  );
 });
