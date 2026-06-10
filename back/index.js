@@ -60,6 +60,28 @@ app.post("/postEstadisticas", async function (req, res) {
 app.put("/putUsuarios", async function (req, res) {
   console.log(req.body);
   await realizarQuery(
-    `UPDATE Escuela SET calle = '${req.body.calle}', nivel = '${req.body.nivel}', privada = ${req.body.privada}, altura = ${req.body.altura} WHERE id = ${req.body.id}`
+    `UPDATE Usuarios SET nombre = '${req.body.nombre}', apellido = '${req.body.apellido}', nombre_de_usuario = '${req.body.nombre_de_usuario}', contraseña = '${req.body.contraseña}' WHERE id_usuario = ${req.body.id_usuario}`
+  );
+});
+
+app.put("/putEstadisticas", async function (req, res) {
+  console.log(req.body);
+  await realizarQuery(
+    `UPDATE Estadisticas SET partidas_ganadas = ${req.body.partidas_ganadas}, partidas_perdidas = ${req.body.partidas_perdidas}, partidas_empatadas = ${req.body.partidas_empatadas}, porcentaje_victorias = ${req.body.porcentaje_victorias} WHERE id_usuario = ${req.body.id_usuario}`
+  );
+});
+
+// DELETE
+app.delete("/deleteUsuarios", async function (req, res) {
+  console.log(req.body);
+  await realizarQuery(
+    `DELETE FROM Usuarios WHERE id_usuario = ${req.body.id_usuario}`
+  );
+});
+
+app.delete("/deleteEstadisticas", async function (req, res) {
+  console.log(req.body);
+  await realizarQuery(
+    `DELETE FROM Estadisticas WHERE id_usuario = ${req.body.id_usuario}`
   );
 });
