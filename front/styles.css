@@ -1,0 +1,45 @@
+body{
+    background-image: url(/front/imgs/fondo1.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+/*LOGIN*/
+
+#main-login{
+    text-align: center;
+    padding: 50px
+}
+
+input{
+    width: 50rem;
+    height: 4rem;
+
+    border-radius: 40px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#title{
+    font-size: 60px;
+    margin: 0;
+}
+
+#inputs-top{
+    padding: 1.5rem;
+}
+
+#buttons-div{
+    padding: 0;
+}
+
+#inputs-bottom{
+    padding: 1.5rem;
+}
