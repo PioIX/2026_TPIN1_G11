@@ -23,21 +23,25 @@
           </div>
         </div>
         <div id="buttons-div">
-            <button onclick="handleLogin()" data-bs-toggle="tooltip" data-bs-placement="top" title="Iniciar sesión">
+            <button id="button-login" onclick="handleLogin()" data-bs-toggle="tooltip" data-bs-placement="top" title="Iniciar sesión">
               Iniciar sesión
             </button>
-            <button>Jugar como invitado</button>
-          </div>
+            <button id="button-inv">Jugar como invitado</button>
+        </div>
       </section>
       <section id="Register">
         <div id="inputs-bottom">
           <h2>O si desea registrarse, además indíquenos su nombre.</h2>
-          <label for="username">Nombre de usuario</label>
+          <label for="username">Nombre</label>
           <div>
             <input type="text" id="username" placeholder="Pepe"/>
           </div>
+          <label for="username">Apellido</label>
           <div>
-            <button onclick="handleRegister()" data-bs-toggle="tooltip" data-bs-placement="top" title="Registrarse">
+            <input type="text" id="username" placeholder="Calvo"/>
+          </div>
+          <div>
+            <button id="button-register" onclick="handleRegister()" data-bs-toggle="tooltip" data-bs-placement="top" title="Registrarse">
               Registrarse
             </button>
           </div>
