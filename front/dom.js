@@ -17,24 +17,36 @@ function getContraseña() {
   return document.getElementById("inputContraseña").value;
 }
 
-function getCantGanadas() {
-  return document.getElementById("ingresoAltura").value;
+function getEmail() {
+  return document.getElementById("ingresoEmail").value;
 }
 
 // Tabla ESTADISTICAS
-// SUJETO A MODIFICACIONES
-function getCantGanadas() {
-  return document.getElementById("inputCantGanadas").value;
+function getPartTotales() {
+  return document.getElementById("inputPartGanadas").value;
 }
 
 function getCantEmpatadas() {
-  return document.getElementById("inputCantEmpatadas").value;
-}
-
-function getCantPerdidas() {
-  return document.getElementById("inputCantPerdidas").value;
+  return document.getElementById("inputPartPerdidas").value;
 }
 
 function getPorcentajeVictorias() {
   return document.getElementById("inputPorcentajeVictorias").value;
+}
+
+function getPuntajeHistorico() {
+  return document.getElementById("inputPuntajeHistorico").value;
+}
+
+// Tabla PARTIDAS
+function getGano() {
+  return document.getElementById("inputGano").value;
+}
+
+function getFecha() {
+  return document.getElementById("inputFecha").value;
+}
+
+function getPuntaje() {
+  return document.getElementById("inputPuntaje").value;
 }

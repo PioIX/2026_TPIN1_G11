@@ -36,7 +36,16 @@ app.get("/getEstadisticas", async function (req, res) {
   res.send(respuesta);
 });
 
-// POST - MODIFICAR lo del res
+app.get("/getPartidas", async function (req, res) {
+  console.log(req.query);
+  const respuesta = await realizarQuery(`
+        SELECT * FROM Partidas;
+    `);
+  console.log({ respuesta });
+  res.send(respuesta);
+});
+
+// POST
 app.post("/postUsuarios", async function (req, res) {
   console.log(req.body);
   let respuesta = await realizarQuery(
@@ -55,6 +64,15 @@ app.post("/postEstadisticas", async function (req, res) {
   console.log(req.body);
   await realizarQuery(
     `INSERT INTO Estadisticas(partidas_ganadas, partidas_perdidas, partidas_empatadas, porcentaje_victorias, id_usuario) VALUES (${req.body.partidas_ganadas}, ${req.body.partidas_perdidas}, ${req.body.partidas_empatadas}, ${req.body.porcentaje_victorias}, ${req.body.id_usuario})`
+  );
+  console.log({ respuesta })
+  res.send(respuesta)
+});
+
+app.post("/postPartidas", async function (req, res) {
+  console.log(req.body);
+  await realizarQuery(
+    `INSERT INTO Partidas(gano, fecha, puntaje, id_usuario) VALUES (${req.body.gano}, '${req.body.fecha}', ${req.body.puntaje}, ${req.body.id_usuario})`
   );
   console.log({ respuesta })
   res.send(respuesta)
@@ -79,6 +97,15 @@ app.put("/putEstadisticas", async function (req, res) {
   res.send(respuesta)
 });
 
+app.put("/putPartidas", async function (req, res) {
+  console.log(req.body);
+  await realizarQuery(
+    `UPDATE Partidas SET gano = ${req.body.gano}, fecha = '${req.body.fecha}', puntaje = ${req.body.puntaje} WHERE id_partida = ${req.body.id_partida}`
+  );
+  console.log({ respuesta })
+  res.send(respuesta)
+});
+
 // DELETE
 app.delete("/deleteUsuarios", async function (req, res) {
   console.log(req.body);
@@ -93,6 +120,15 @@ app.delete("/deleteEstadisticas", async function (req, res) {
   console.log(req.body);
   await realizarQuery(
     `DELETE FROM Estadisticas WHERE id_usuario = ${req.body.id_usuario}`
+  );
+  console.log({ respuesta })
+  res.send(respuesta)
+});
+
+app.delete("/deletePartidas", async function (req, res) {
+  console.log(req.body);
+  await realizarQuery(
+    `DELETE FROM Partidas WHERE id_partida = ${req.body.id_partida}`
   );
   console.log({ respuesta })
   res.send(respuesta)
