@@ -1,0 +1,93 @@
+body{
+    background-image: url(/front/imgs/fondo1.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+/*LOGIN*/
+
+#main-login{
+    text-align: center;
+    padding: 50px
+}
+
+h2{
+    color: goldenrod;
+}
+
+label{
+    color: antiquewhite;
+}
+
+input{
+    width: 50rem;
+    height: 4rem;
+
+    border-radius: 40px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+
+    background-color: antiquewhite;
+    color: goldenrod;
+
+    border: 0;
+}
+
+#title{
+    font-size: 60px;
+    margin: 0;
+    color: antiquewhite;
+}
+
+#inputs-top{
+    padding: 1.5rem;
+}
+
+#buttons-div{
+    padding: 0;
+}
+
+#inputs-bottom{
+    padding: 1.5rem;
+}
+
+button{
+    height: 3rem;
+    padding: 1rem;
+    border-radius: 30px;
+    border: darkgoldenrod 3px dashed;
+}
+
+#button-login{
+    background-color: darkred;
+    color: antiquewhite;
+}
+
+#button-login:active{
+    background-color: red;
+}
+
+#button-inv{
+    background-color: black;
+    color: antiquewhite;
+}
+
+#button-inv:active{
+    background-color: rgb(54, 54, 54);
+}
+
+#button-register{
+    background-color: darkred;
+    color: antiquewhite;
+}
+
+#button-register:active{
+    background-color: red;
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" href="styles.css">
+    <title>Generala - Login</title>
+  </head>
+
+  <body>
+    <main id="main-login">
+      <h1 id="title">Generala</h1>
+      <section id="Login">
+        <div id="inputs-top">
+          <h2>¡Bienvenido! Inicie sesión</h2>
+          <label for="email">Correo electrónico</label>
+          <div>
+            <input type="mail" id="email" placeholder="nombre@example.com"/>
+          </div>
+          <label for="password">Contraseña</label>
+          <div>
+            <input type="password" id="password" placeholder="********"/>
+          </div>
+        </div>
+        <div id="buttons-div">
+            <button id="button-login" onclick="handleLogin()" data-bs-toggle="tooltip" data-bs-placement="top" title="Iniciar sesión">
+              Iniciar sesión
+            </button>
+            <button id="button-inv">Jugar como invitado</button>
+        </div>
+      </section>
+      <section id="Register">
+        <div id="inputs-bottom">
+          <h2>O si desea registrarse, además indíquenos su nombre.</h2>
+          <label for="username">Nombre</label>
+          <div>
+            <input type="text" id="username" placeholder="Pepe"/>
+          </div>
+          <label for="username">Apellido</label>
+          <div>
+            <input type="text" id="username" placeholder="Calvo"/>
+          </div>
+          <div>
+            <button id="button-register" onclick="handleRegister()" data-bs-toggle="tooltip" data-bs-placement="top" title="Registrarse">
+              Registrarse
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+    
+    <script src="dom.js"></script>
+    <script src="clases/User.js"></script>
+    <script src="logic.js"></script>
+
+  </body>
+</html>
