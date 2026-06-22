@@ -2,7 +2,7 @@
 
 // Tabla USUARIOS
 function getNombre() {
-  return document.getElementById("inputCalle").value;
+  return document.getElementById("inputNombre").value;
 }
 
 function getApellido() {
@@ -18,11 +18,13 @@ function getContraseña() {
 }
 
 function getEmail() {
-  return document.getElementById("ingresoEmail").value;
+  return document.getElementById("inputEmail").value;
 }
 
 // Tabla ESTADISTICAS
-function getPartTotales() {
+
+/*TODO ESTO HAY QUE CAMBIARLO PQ NO VAN A SER INPUTS; ES DIRECTO DE LA BBDD/CODIGO*/
+/*function getPartTotales() {
   return document.getElementById("inputPartGanadas").value;
 }
 
@@ -44,9 +46,9 @@ function getGano() {
 }
 
 function getFecha() {
-  return document.getElementById("inputFecha").value;
+  return document.getElementById("inputFecha").value; 
 }
 
 function getPuntaje() {
   return document.getElementById("inputPuntaje").value;
-}
+} */

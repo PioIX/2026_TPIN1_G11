@@ -1,23 +1,12 @@
 class User{
-    constructor(name, mail, password){
-        this.name = name;
-        this.mail = mail;
-        this.password = password;
+    constructor(nombre, apellido, nombre_de_usuario, email, contraseña){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.nombre_de_usuario = nombre_de_usuario;
+        this.email = email;
+        this.contraseña = contraseña;
     }
 
-    save() {
-
-    }
-
-    load() {
-
-    }
-
+   
 }
 
-let users = [
-    new User ("Gyro", "a", "a"),
-    new User ("Salla", "jsallaberry@pioix.edu.ar", "XxelsansxX"),
-    new User ("Mana sama", "samamana@gmail.com", "gardenia"),
-    new User ("Zana", "Zanamanzana@gmail.com", "123manzana")
-]

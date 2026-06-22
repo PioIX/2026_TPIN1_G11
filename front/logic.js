@@ -1,92 +1,93 @@
-/* Punto 6 */
 
-let ID_user = 1
-function login(mail, password){
-    for (let i = 0; i < users.length; i++){
-        if (mail == users[i].mail){
-            if (password == users[i].password){
-                ID_user = users[i].id
-                return ID_user
+
+let ID_usuario = 1
+function login(mail, contraseña){
+    for (let i = 0; i <  nombre_de_usuarios.length; i++){
+        if (mail ==  nombre_de_usuarios[i].mail){
+            if (contraseña ==  nombre_de_usuarios[i].contraseña){
+                ID_usuario =  nombre_de_usuarios[i].id
+                return ID_usuario
             } else {
                 return 0
-            }
+            } 
         }
     }
     return -1
 }
 
-/* Punto 7*/
+
 
 function handleLogin(){
-    let mail = ui.getEmail()
-    let password = ui.getPassword()
+    letemail = ui.getEmail()
+    let contraseña = ui.getContraseña()
     let vacio = false
 
-    if (mail == "" || password == ""){
-        ui.showModal("Error", "Mail o contraseña vacios.")
+    if (mail == "" || contraseña == ""){
+        /*ui.showModal("Error", "Mail o contraseña vacios.")*/
         vacio = true
     }
 
-    let res = login(mail, password)
+    let res = login(mail, contraseña)
     if (res == 0){
-        ui.showModal("Error de login", "Contraseña incorrecta.")
+        /*ui.showModal("Error de login", "Contraseña incorrecta.")*/
     } else if (res > 0){
-        ui.changeScreen()
-        ui.setUser(users[res - 1].name)
+        setnombre_de_usuario( nombre_de_usuarios[res - 1].name)
         showNotes(res)
     } else if (res == -1 && vacio == false) {
-        ui.showModal("Error", "El usuario no existe.")
+        /*ui.showModal("Error", "El usuario no existe.")*/
     }
 }
 
-/* Punto 8 */
 
-function newUser(user, mail, password){
-    let noEncontreUser = false
-    for (let i = 0 ; i < users.length; i++){
-        if (mail != users[i].mail){
-            noEncontreUser = true
+
+function newNombreUsuario( nombre_de_usuario, email, contraseña){
+    let noEncontreNomUs = false
+    for (let i = 0 ; i <  nombre_de_usuarios.length; i++){
+        if (mail !=  nombre_de_usuarios[i].mail){
+            noEncontreNomUs = true
         }else {
-            noEncontreUser = false
+            noEncontreNomUs = false
             return -1
         }
 
     }
 
-    if (noEncontreUser == true) {
-            newU = new User(user, mail, password)
-            users.push(newU)
+    if (noEncontreNomUs == true) {
+            newU = new  nombre_de_usuario( nombre_de_usuario,email, contraseña)
+             nombre_de_usuarios.push(newU)
             return newU.id;
     }
 
     return -1
 }
 
-/* Punto 9 */
+
 
 function handleRegister(){
-    let mail = ui.getEmail()
-    let user = ui.getUser()
-    let password = ui.getPassword()
+    let nombre = getNombre()
+    let apellido = getApellido()
+    let nombre_de_usuario =  getNombreUsuario()
+    let email = getEmail()
+    let contraseña = getContraseña()
 
-    let res2 = newUser(user, mail, password)
-    if (mail == "" || user == "" || password == ""){
-        ui.showModal("Error", "Por favor complete todos los datos")
+    let res2 = newapellido(apellido, nombre, nombre_de_usuari, email, contraseña)
+    if ( nombre == "" || apellido == "" || nombre_de_usuario == "" || email == "" || contraseña == ""){
+        /*ui.showModal("Error", "Por favor complete todos los datos")*/
     } else if (res2 > 0) {
-        handleLogin(user, mail, password)
+        handleLogin(email, contraseña)
     } else {
-        ui.showModal("Error", "El correo ya está en uso")
+        /*ui.showModal("Error", "El correo ya está en uso")*/
     }
 }
 
 
-/* Punto 11 */
 
+/*
 function logout(){
     if (confirm("¿Estás seguro de que deseas cerrar sesión?")) {
-        ID_user = -1
-        /*ui.changeScreen()
-        ui.clearLoginInputs()*/
+        ID_usuario = -1
+        ui.changeScreen()
+        ui.clearLoginInputs()
     }
 }
-
+*/
