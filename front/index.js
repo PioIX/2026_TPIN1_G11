@@ -92,6 +92,19 @@ async function llamadoGetUsuarios() {
   console.log(result);
 }
 
+async function llamadoGetLoginEmail(email) {
+    const response = await fetch(`http://localhost:4000/getLoginEmail?email=${email}`,{
+        method:"GET",
+        headers: {
+            "Content-Type": "application/json",
+          },
+    })
+
+    console.log(response)
+    let result = await response.json()
+    console.log(result)
+}
+
 async function llamadoGetEstadisticas() {
   const response = await fetch("http://localhost:4000/getEstadisticas", {
     method: "GET",

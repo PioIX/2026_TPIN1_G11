@@ -45,6 +45,16 @@ app.get("/getPartidas", async function (req, res) {
   res.send(respuesta);
 });
 
+// GET LOGIN
+app.get("/getLoginEmail", async function (req, res) {
+  console.log("get /getloginemail req.query:",req.query);
+  const respuesta = await realizarQuery(`
+        SELECT * FROM Usuarios WHERE email = '${req.query.email}';
+    `);
+  console.log({ respuesta:respuesta });
+  res.send(respuesta);
+});
+
 // POST
 app.post("/postUsuarios", async function (req, res) {
   console.log(req.body);
