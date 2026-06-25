@@ -1,69 +1,65 @@
+async function login(email, contraseña) {
+    const respuesta = await fetch(`/getLoginEmail?email=${email}`);
+    const info = await respuesta.json();
 
+    if (info.length === 0) {
+        return [];
+    }
 
-let ID_usuario = 1
-function login(){
-   getloginemail()
-    if (contraseña ==  ){
-      return ID_usuario
-    } else {
-        return 0
-    } 
-
-    return -1
-    console.log("1")
+    if (info.length > 0 && info[0].contraseña === contraseña) {
+        return info[0];
+    }
 }
-
-
 
 function handleLogin(){
-    let email = getEmail()
-    let contraseña = getContraseña()
-    let vacio = false
+    const email = getEmail()
+    const contraseña = getContraseña()
 
-    if (email == "" || contraseña == ""){
+    if (email === "" || contraseña === ""){
         /*showModal("Error", "Mail o contraseña vacios.")*/
-        vacio = true
         console.log("error, datos vacios")
+        return;
     }
 
-    let res = login(email, contraseña)
-    if (res == 0){
+    const res = login(email, contraseña)
+    if (res == null) {
         /*showModal("Error de login", "Contraseña incorrecta.")*/
         console.log("error contraseña")
-    } else if (res > 0){
-        /* aca se pasaria a la siguiente pag */
-        console.log("2")
-    } else if (res == -1 && vacio == false) {
+        return;
+    }
+
+    if (res.length === 0) {
         /*showModal("Error", "El usuario no existe.")*/
         console.log("error usuario")
+        return;
     }
+    
+    /* aca se pasaria a la siguiente pag */
+    console.log("2")
 }
 
 
+async function newUsuario(email, nombre, apellido, nombre_de_usuario, contraseña){
+    const usuario = {
+        nombre_de_usuario,
+        email,
+        contraseña,
+        nombre,
+        apellido
+    };
 
-function newUsuario( nombre_de_usuario, email, contraseña){
-    let noEncontreUs = false
-    for (let i = 0 ; i <  .length; i++){
-        if (mail !=  [i].mail){
-            noEncontreUs = true
-        }else {
-            noEncontreUs = false
-            return -1
-            console.log("3")
-        }
+    const opciones = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(usuario),
+    };
 
-    }
+    const respuesta = await fetch("/postUsuarios", opciones);
 
-    if (noEncontreUs == true) {
-            newU = new  usuario( nombre, apellido, nombre_de_usuario,email, contraseña)
-             .push(newU)/*no se si se usaria push*/
-            return newU.id;
-    }
-
-    return -1
+    return await respuesta.json();
 }
-
-
 
 function handleRegister(){
     let nombre = getNombre()
@@ -72,20 +68,29 @@ function handleRegister(){
     let email = getEmail()
     let contraseña = getContraseña()
 
-    let res2 = newapellido(apellido, nombre, nombre_de_usuari, email, contraseña)
-    if ( nombre == "" || apellido == "" || nombre_de_usuario == "" || email == "" || contraseña == ""){
+    if (nombre_de_usuario === "" || email === "" || contraseña === "" || nombre === "" || apellido === "" ){
         /*showModal("Error", "Por favor complete todos los datos")*/
         console.log("error, complete datos")
-    } else if (res2 > 0) {
-        handleLogin(email, contraseña)
-        console.log("4")
-    } else {
-        /*showModal("Error", "El correo ya está en uso")*/
-        console.log("error correo")
+        return;
     }
+
+    const res = newUsuario(email, nombre, apellido, nombre_de_usuario, contraseña);
+
+    if (res == null) {
+        /*showModal("Error", "Error al crear el usuario")*/
+        console.log("error, al crear usuario")
+        return;
+    }
+
+    if (res.error != null) {
+        /*showModal("Error", res.error)*/
+        console.log(res.error)
+        return;
+    }
+
+    handleLogin(email, contraseña)
+    console.log("Logeado")
 }
-
-
 
 /*
 function logout(){
