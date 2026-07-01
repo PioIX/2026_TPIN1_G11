@@ -4,57 +4,151 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="styles.css">
-    <title>Generala - Login</title>
+    <title>Generala</title>
   </head>
 
   <body>
-    <main id="main-login">
-      <h1 id="title">Generala</h1>
-      <section id="Login">
-        <div id="inputs-top">
-          <h2>¡Bienvenido! Inicie sesión</h2>
-          <label for="inputEmail">Correo electrónico</label>
-          <div>
-            <input type="mail" id="inputEmail" placeholder="nombre@example.com"/>
+    <main>
+      <div id="MAIN-login">
+        <h1 id="title">Generala</h1>
+        <section id="Login">
+          <div id="inputs-top">
+            <h2>¡Bienvenido! Inicie sesión</h2>
+            <label for="inputEmail">Correo electrónico</label>
+            <div>
+              <input class="input-login" type="mail" id="inputEmail" placeholder="nombre@example.com"/>
+            </div>
+            <label for="inputContraseña">Contraseña</label>
+            <div>
+              <input class="input-login" type="password" id="inputContraseña" placeholder="********"/>
+            </div>
           </div>
-          <label for="inputContraseña">Contraseña</label>
-          <div>
-            <input type="password" id="inputContraseña" placeholder="********"/>
+          <div id="buttons-div">
+              <button id="button-login" onclick="handleLogin()" data-bs-toggle="tooltip" data-bs-placement="top" title="Iniciar sesión">
+                Iniciar sesión
+              </button>
+              <button id="button-inv">Jugar como invitado</button>
+          </div>
+        </section>
+        <section id="Register">
+          <div id="inputs-bottom">
+            <h2>O si desea registrarse, además indíquenos su nombre.</h2>
+            <label for="inputNombre">Nombre</label>
+            <div>
+              <input class="input-login" type="text" id="inputNombre" placeholder="Pepe"/>
+            </div>
+            <label for="inputApellido">Apellido</label>
+            <div>
+              <input class="input-login" type="text" id="inputApellido" placeholder="Calvo"/>
+            </div>
+            <label for="inputNombreUsuario">Nombre de usuario</label>
+            <div>
+              <input class="input-login" type="text" id="inputNombreUsuario" placeholder="XxPepitoxX"/>
+            </div>
+            <div>
+              <button id="button-register" onclick="handleRegister()" data-bs-toggle="tooltip" data-bs-placement="top" title="Registrarse">
+                Registrarse
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div id="Admin" style="display: none;">
+        <div style="display: flex; gap: 1rem;">
+          <div id="funciones"> <!-- Funciones -->
+            <section style="display: flex; gap: 1rem; margin-bottom: 1rem;"> <!-- titulo de admin-->
+              <div style="background-color: red; border-radius: 50%; height: 100px; width: 100px;"></div>
+              <h1>Admin</h1>
+            </section>
+            <section> <!-- para borrar, editar, etc.-->
+              <div class="admin-seccion"> <!-- funciones para la base de datos de usuarios -->
+                <h2>Usuarios</h2>
+                <div> <!-- BORRAR -->
+                  <h3>Eliminar</h3>
+                  <input class="input-admin" id="idEliminarUsuario" placeholder="Ingrese el id del usuario a Eliminar">
+                  <button onclick="eliminarUsuario()">Eliminar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
+                </div>
+                <hr>
+                <div> <!-- MODIFICAR -->
+                  <h3>Modificar</h3>
+                  <div>
+                    <input class="input-id-admin" id="idModificarUsuario" placeholder="Ingrese el id del usuario a modificar">
+                  </div>
+                  <input class="input-admin" id="nombreModificarUsuario" type="text" placeholder="Ingrese el nombre al que se va a cambiar">
+                  <input class="input-admin" id="apellidoModificarUsuario" type="text" placeholder="Ingrese el apellido al que se va a cambiar">
+                  <input class="input-admin" id="usernameModificarUsuario" type="text" placeholder="ingrese el nombre de usuario al que se va a cambiar">
+                  <input class="input-admin" id="contraseñaModificarUsuario" type="text" placeholder="ingrese la contraseña a la que se va a cambiar">
+                  <input class="input-admin" id="emailModificarUsuario" type="text" placeholder="ingrese el email al que se va a cambiar">
+                  <button onclick="modificarUsuario()">Modificar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
+                </div>
+                <hr>
+                <div> <!-- AGREGAR -->
+                  <h3>Agregar</h3>
+                  <input class="input-admin" id="nombreAgregarUsuario" type="text" placeholder="Ingrese el nombre">
+                  <input class="input-admin" id="apellidoAgregarUsuario" type="text" placeholder="Ingrese el apellido">
+                  <input class="input-admin" id="usernameAgregarUsuario" type="text" placeholder="ingrese el nombre">
+                  <input class="input-admin" id="contraseñaAgregarUsuario" type="text" placeholder="ingrese la contraseña">
+                  <input class="input-admin" id="emailAgregarUsuario" type="text" placeholder="ingrese el email">
+                  <button onclick="agregarUsuario()">Agregar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
+                </div>
+              </div>
+              <div class="admin-seccion"> <!-- funciones para la base de datos de estadisticas -->
+                <div> <!-- MODIFICAR -->
+                  <h2>Estadisticas</h2>
+                  <h3>Modificar</h3>
+                  <div>
+                    <input class="input-id-admin" id="idModificarEstadistica" placeholder="Ingrese el id de la estadistica a modificar">
+                  </div>
+                  <input class="input-admin" id="useridModificarEstadistica" type="text" placeholder="Ingrese el nombre al que se va a cambiar">
+                  <input class="input-admin" id="totalModificarEstadistica" type="number" placeholder="Ingrese el apellido al que se va a cambiar">
+                  <input class="input-admin" id="ganadasModificarEstadistica" type="number" placeholder="ingrese el nombre de usuario al que se va a cambiar">
+                  <input class="input-admin" id="perdidasModificarEstadisticas" type="number" placeholder="ingrese la contraseña a la que se va a cambiar">
+                  <input class="input-admin" id="porcentajeModificarEstadistica" type="text" placeholder="ingrese el email al que se va a cambiar">
+                  <input class="input-admin" id="puntajeModificarEstadistica" type="number" placeholder="ingrese el email al que se va a cambiar">
+                  <button onclick="modificarEstadistica()">Modificar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
+                </div>
+                <hr>
+                <div> <!-- BORRAR -->
+                  <h3>Eliminar</h3>
+                  <input class="input-admin" id="idEliminarEstadistica" placeholder="Ingrese el id de la estadistica a Eliminar">
+                  <button onclick="eliminarEstadistica()">Eliminar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
+                </div>
+              </div>
+              <div class="admin-seccion"> <!-- funciones para la base de datos de partidas -->
+                <h2>Partidas</h2>
+                <div> <!-- BORRAR -->
+                  <h3>Eliminar</h3>
+                  <input class="input-admin" id="idEliminarPartida" placeholder="Ingrese el id de la partida a Eliminar">
+                  <button onclick="eliminarPartida()">Eliminar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
+                </div>
+              </div>
+            </section>
+          </div>
+          <div id="tablas" onload="cargarTablas()"> <!-- Tablas -->
+            <table id="tabla-usuarios"> <!-- USUARIOS -->
+
+            </table>
+            <table id="tabla-estadisticas" style="display: none;"> <!-- ESTADISTICAS -->
+
+            </table>
+            <table id="tabla-partidas" style="display: none;"> <!-- PARTIDAS -->
+
+            </table>
           </div>
         </div>
-        <div id="buttons-div">
-            <button id="button-login" onclick="handleLogin()" data-bs-toggle="tooltip" data-bs-placement="top" title="Iniciar sesión">
-              Iniciar sesión
-            </button>
-            <button id="button-inv">Jugar como invitado</button>
-        </div>
-      </section>
-      <section id="Register">
-        <div id="inputs-bottom">
-          <h2>O si desea registrarse, además indíquenos su nombre.</h2>
-          <label for="inputNombre">Nombre</label>
-          <div>
-            <input type="text" id="inputNombre" placeholder="Pepe"/>
-          </div>
-          <label for="inputApellido">Apellido</label>
-          <div>
-            <input type="text" id="inputApellido" placeholder="Calvo"/>
-          </div>
-          <label for="inputNombreUsuario">Nombre de usuario</label>
-          <div>
-            <input type="text" id="inputNombreUsuario" placeholder="XxPepitoxX"/>
-          </div>
-          <div>
-            <button id="button-register" onclick="handleRegister()" data-bs-toggle="tooltip" data-bs-placement="top" title="Registrarse">
-              Registrarse
-            </button>
-          </div>
-        </div>
-      </section>
+      </div>
+
+      <div id="Stadisticas" style="display: none;">
+
+      </div>
+
+      <div id="Game" style="display: none;">
+
+      </div>
     </main>
     
     <script src="dom.js"></script>
-    <script src="clases/User.js"></script>
     <script src="logic.js"></script>
 
   </body>

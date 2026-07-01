@@ -10,9 +10,26 @@ body{
     display: none;
 }
 
-/*LOGIN*/
+table {
+        font-family: cursive;
+        border-collapse: collapse;
+        margin: 10px;
+        border-radius: 20px;
+    }
 
-#main-login{
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+/* ------- LOGIN -------*/
+
+#MAIN-login{
     text-align: center;
     padding: 50px
 }
@@ -25,7 +42,7 @@ label{
     color: antiquewhite;
 }
 
-input{
+.input-login{
     width: 50rem;
     height: 4rem;
 
@@ -90,4 +107,66 @@ button{
 
 #button-register:active{
     background-color: red;
+}
+
+/* ------- ADMIN --------- */
+
+#funciones{
+    width: 50%;
+    padding: 2rem;
+    background-color: antiquewhite;
+    border-radius: 20px;
+}
+
+hr{
+    border: darkred 2px dashed;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+}
+
+#tablas{
+    width: 50%;
+    padding: 2rem;
+    background-color: antiquewhite;
+    border-radius: 20px;
+
+    height: 200px;
+}
+
+.admin-seccion{
+    padding: 1rem;
+    background-color: rgb(211, 187, 155);
+    border-radius: 20px;
+    margin-bottom: 1rem;
+}
+
+.input-admin{
+    height: 1rem;
+    border-radius: 20px;
+
+    border-radius: 40px;
+    padding: 5px;
+    text-align: center;
+
+    background-color: antiquewhite;
+    color: goldenrod;
+    
+    border: 0;
+}
+
+.input-id-admin{
+    height: 1rem;
+    border-radius: 20px;
+
+    border-radius: 40px;
+    padding: 5px;
+    text-align: center;
+    margin: 1rem;
+    margin-left: 0;
+
+    background-color: goldenrod;
+    color: antiquewhite;
+    
+    border: 0;
 }
