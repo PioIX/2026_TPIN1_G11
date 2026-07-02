@@ -50,11 +50,11 @@ app.get("/getPartidas", async function (req, res) {
 
 // GET LOGIN
 app.get("/getLoginEmail", async function (req, res) {
-  console.log("get /getloginemail req.query:",req.query);
+  console.log("get /getloginemail req.query:", req.query);
   const respuesta = await realizarQuery(`
         SELECT * FROM Usuarios WHERE email = '${req.query.email}';
     `);
-  console.log({ respuesta:respuesta });
+  console.log({ respuesta: respuesta });
   res.send(respuesta);
 });
 
@@ -97,8 +97,22 @@ app.post("/postLogin", async function (req, res) {
   const respuesta = await realizarQuery(
     `SELECT * FROM Usuarios WHERE email = '${req.body.email}'`
   );
-  console.log({ respuesta });
-  res.send(respuesta);
+
+    console.log("respuesta: ", respuesta);
+
+
+  if (respuesta.length === 0) {
+
+    res.send([]);
+
+  }
+
+  if (respuesta.length > 0 && respuesta[0].contraseña === contraseña) {
+    console.log(respuesta[0]);
+    res.send(respuesta[0]);
+  }
+
+
 });
 
 // PUT

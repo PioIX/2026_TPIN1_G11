@@ -1,29 +1,32 @@
 async function login(email, contraseña) {
+
+    console.log("entre a login: ", email, contraseña)
+
+    const body = {
+        email: email,
+        contraseña: contraseña
+    }
+
     const opciones = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify(body),
     };
-    
+
     const respuesta = await fetch(`/postLogin`, opciones);
-    const info = await respuesta.json();
+    const res = await respuesta.json();
 
-    if (info.length === 0) {
-        return [];
-    }
-
-    if (info.length > 0 && info[0].contraseña === contraseña) {
-        return info[0];
-    }
+    console.log("res despues de json: ", res)
+ 
 }
 
-function handleLogin(){
+async function handleLogin() {
     const email = ui.getEmail()
     const contraseña = ui.getContraseña()
 
-    if (email === "" || contraseña === ""){
+    if (email === "" || contraseña === "") {
         /*showModal("Error", "Mail o contraseña vacios.")*/
         console.log("error, datos vacios")
         return;
@@ -41,17 +44,17 @@ function handleLogin(){
         console.log("error usuario")
         return;
     }
-    
-    if (email === "jpork@pioix.edu.ar"){
+
+    if (email === "jpork@pioix.edu.ar") {
         ui.changeScreenAdmin()
-    }else{
+    } else {
         ui.changeScreenGame()
     }
-    
+
 }
 
 
-async function newUsuario(email, nombre, apellido, nombre_de_usuario, contraseña){
+async function newUsuario(email, nombre, apellido, nombre_de_usuario, contraseña) {
     const usuario = {
         nombre_de_usuario,
         email,
@@ -73,14 +76,14 @@ async function newUsuario(email, nombre, apellido, nombre_de_usuario, contraseñ
     return await respuesta.json();
 }
 
-function handleRegister(){
+async function handleRegister() {
     let nombre = ui.getNombre()
     let apellido = ui.getApellido()
-    let nombre_de_usuario =  ui.getNombreUsuario()
+    let nombre_de_usuario = ui.getNombreUsuario()
     let email = ui.getEmail()
     let contraseña = ui.getContraseña()
 
-    if (nombre_de_usuario === "" || email === "" || contraseña === "" || nombre === "" || apellido === "" ){
+    if (nombre_de_usuario === "" || email === "" || contraseña === "" || nombre === "" || apellido === "") {
         /*showModal("Error", "Por favor complete todos los datos")*/
         console.log("error, complete datos")
         return;
@@ -104,12 +107,4 @@ function handleRegister(){
     console.log("Logeado")
 }
 
-/*
-function logout(){
-    if (confirm("¿Estás seguro de que deseas cerrar sesión?")) {
-        ID_usuario = -1
-        changeScreen()
-        clearLoginInputs()
-    }
-}
-*/
+
