@@ -1,5 +1,13 @@
 async function login(email, contraseña) {
-    const respuesta = await fetch(`/getLoginEmail?email=${email}`);
+    const opciones = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+    };
+    
+    const respuesta = await fetch(`/postLogin`, opciones);
     const info = await respuesta.json();
 
     if (info.length === 0) {
@@ -21,7 +29,7 @@ function handleLogin(){
         return;
     }
 
-    const res = login(email, contraseña)
+    const res = await login(email, contraseña)
     if (res == null) {
         /*showModal("Error de login", "Contraseña incorrecta.")*/
         console.log("error contraseña")
@@ -78,7 +86,7 @@ function handleRegister(){
         return;
     }
 
-    const res = newUsuario(email, nombre, apellido, nombre_de_usuario, contraseña);
+    const res = await newUsuario(email, nombre, apellido, nombre_de_usuario, contraseña);
 
     if (res == null) {
         /*showModal("Error", "Error al crear el usuario")*/
@@ -92,7 +100,7 @@ function handleRegister(){
         return;
     }
 
-    handleLogin(email, contraseña)
+    await handleLogin(email, contraseña)
     console.log("Logeado")
 }
 

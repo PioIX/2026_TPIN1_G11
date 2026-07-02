@@ -5,6 +5,9 @@ var cors = require("cors");
 const { realizarQuery } = require("./modulos/mysql");
 
 var app = express(); //Inicializo express
+
+app.use(express.static('../front')); //Hago que el servidor sirva los archivos de la carpeta front
+
 var port = process.env.PORT || 4000; //Ejecuto el servidor en el puerto 4000
 
 // Convierte una petición recibida (POST-GET...) a objeto JSON
@@ -72,7 +75,7 @@ app.post("/postUsuarios", async function (req, res) {
 
 app.post("/postEstadisticas", async function (req, res) {
   console.log(req.body);
-  await realizarQuery(
+  const respuesta = await realizarQuery(
     `INSERT INTO Estadisticas(partidas_ganadas, partidas_perdidas, partidas_empatadas, porcentaje_victorias, id_usuario) VALUES (${req.body.partidas_ganadas}, ${req.body.partidas_perdidas}, ${req.body.partidas_empatadas}, ${req.body.porcentaje_victorias}, ${req.body.id_usuario})`
   );
   console.log({ respuesta });
@@ -81,7 +84,7 @@ app.post("/postEstadisticas", async function (req, res) {
 
 app.post("/postPartidas", async function (req, res) {
   console.log(req.body);
-  await realizarQuery(
+  const respuesta = await realizarQuery(
     `INSERT INTO Partidas(gano, fecha, puntaje, id_usuario) VALUES (${req.body.gano}, '${req.body.fecha}', ${req.body.puntaje}, ${req.body.id_usuario})`
   );
   console.log({ respuesta });
@@ -91,7 +94,7 @@ app.post("/postPartidas", async function (req, res) {
 // POST PARA EL LOGIN
 app.post("/postLogin", async function (req, res) {
   console.log(req.body);
-  await realizarQuery(
+  const respuesta = await realizarQuery(
     `SELECT * FROM Usuarios WHERE email = '${req.body.email}'`
   );
   console.log({ respuesta });
@@ -101,7 +104,7 @@ app.post("/postLogin", async function (req, res) {
 // PUT
 app.put("/putUsuarios", async function (req, res) {
   console.log(req.body);
-  await realizarQuery(
+  const respuesta = await realizarQuery(
     `UPDATE Usuarios SET nombre = '${req.body.nombre}', apellido = '${req.body.apellido}', nombre_de_usuario = '${req.body.nombre_de_usuario}', contraseña = '${req.body.contraseña}', email = '${req.body.email}' WHERE id_usuario = ${req.body.id_usuario}`
   );
   console.log({ respuesta });
@@ -110,7 +113,7 @@ app.put("/putUsuarios", async function (req, res) {
 
 app.put("/putEstadisticas", async function (req, res) {
   console.log(req.body);
-  await realizarQuery(
+  const respuesta = await realizarQuery(
     `UPDATE Estadisticas SET partidas_ganadas = ${req.body.partidas_ganadas}, partidas_perdidas = ${req.body.partidas_perdidas}, partidas_empatadas = ${req.body.partidas_empatadas}, porcentaje_victorias = ${req.body.porcentaje_victorias} WHERE id_usuario = ${req.body.id_usuario}`
   );
   console.log({ respuesta });
@@ -119,7 +122,7 @@ app.put("/putEstadisticas", async function (req, res) {
 
 app.put("/putPartidas", async function (req, res) {
   console.log(req.body);
-  await realizarQuery(
+  const respuesta = await realizarQuery(
     `UPDATE Partidas SET gano = ${req.body.gano}, fecha = '${req.body.fecha}', puntaje = ${req.body.puntaje} WHERE id_partida = ${req.body.id_partida}`
   );
   console.log({ respuesta });
@@ -129,7 +132,7 @@ app.put("/putPartidas", async function (req, res) {
 // DELETE
 app.delete("/deleteUsuarios", async function (req, res) {
   console.log(req.body);
-  await realizarQuery(
+  const respuesta = await realizarQuery(
     `DELETE FROM Usuarios WHERE id_usuario = ${req.body.id_usuario}`
   );
   console.log({ respuesta });
@@ -138,7 +141,7 @@ app.delete("/deleteUsuarios", async function (req, res) {
 
 app.delete("/deleteEstadisticas", async function (req, res) {
   console.log(req.body);
-  await realizarQuery(
+  const respuesta = await realizarQuery(
     `DELETE FROM Estadisticas WHERE id_usuario = ${req.body.id_usuario}`
   );
   console.log({ respuesta });
@@ -147,7 +150,7 @@ app.delete("/deleteEstadisticas", async function (req, res) {
 
 app.delete("/deletePartidas", async function (req, res) {
   console.log(req.body);
-  await realizarQuery(
+  const respuesta = await realizarQuery(
     `DELETE FROM Partidas WHERE id_partida = ${req.body.id_partida}`
   );
   console.log({ respuesta });
