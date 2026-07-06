@@ -6,29 +6,32 @@ body{
     background-attachment: fixed;
 }
 
-::-webkit-scrollbar {
-    display: none;
+::-webkit-scrollbar{
+    scrollbar-width: none;
 }
 
 table {
-        font-family: cursive;
+        font-family: 'Times New Roman', Times, serif;
         border-collapse: collapse;
         margin: 10px;
         border-radius: 20px;
+
+        width: fit-content;
     }
 
     th {
         text-transform: capitalize;
+        background-color: antiquewhite;
     }
 
     td, th {
-        border: 1px solid #dddddd;
+        border: 1px solid rgb(211, 187, 155);
         text-align: left;
         padding: 8px;
     }
 
     tr:nth-child(even) {
-        background-color: #dddddd;
+        background-color: rgb(211, 187, 155);
     }
 
 /* ------- LOGIN -------*/
@@ -135,7 +138,14 @@ hr{
     background-color: antiquewhite;
     border-radius: 20px;
 
-    height: 200px;
+    height: fit-content;
+    width: fit-content;
+
+    overflow-x: scroll;
+}
+
+#tablas:hover{
+    scrollbar-width: thin;
 }
 
 .admin-seccion{
@@ -174,3 +184,4 @@ hr{
     
     border: 0;
 }
+
