@@ -94,25 +94,15 @@ app.post("/postPartidas", async function (req, res) {
 // POST PARA EL LOGIN
 app.post("/postLogin", async function (req, res) {
   console.log(req.body);
+  const contraseña = req.body.contraseña;
+
   const respuesta = await realizarQuery(
-    `SELECT * FROM Usuarios WHERE email = '${req.body.email}'`
+    `SELECT * FROM Usuarios WHERE email = '${req.body.email}' AND contraseña = '${req.body.contraseña}'`
   );
 
-    console.log("respuesta: ", respuesta);
+  console.log("respuesta: ", respuesta);
 
-
-  if (respuesta.length === 0) {
-
-    res.send([]);
-
-  }
-
-  if (respuesta.length > 0 && respuesta[0].contraseña === contraseña) {
-    console.log(respuesta[0]);
-    res.send(respuesta[0]);
-  }
-
-
+  res.send(respuesta[0]);
 });
 
 // PUT

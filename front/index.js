@@ -1,37 +1,3 @@
-// async function llamadoAlGet() {
-//     let res = await fetch("http://localhost:4000/getUsuarios")
-//     console.log(res) //Imprimo el JSON que viene crudo
-//     let response = await res.json() //Desarmo el JSON a objeto
-//     console.log(response) //Imprimo el objeto de la respuesta del pedido
-//     let elementosTabla = `
-//         <tr>
-//             <th>id</th>
-//             <th>nombre</th>
-//             <th>apellido</th>
-//             <th>nombre de usuario</th>
-//             <th>contraseña</th>
-//             <th>email</th>
-//         </tr>
-//     `
-//     for (i=0;i < response.length; i = i + 1){
-//         console.log(response[i])
-//         elementosTabla += `
-//         <tr>
-//             <td> ${response[i].id}</td>
-//             <td> ${response[i].nombre}</td>
-//             <td> ${response[i].apellido}</td>
-//             <td> ${response[i].nombre_de_usuario}</td>
-//             <td> ${response[i].contraseña}</td>
-//             <td> ${response[i].email}</td>
-//         </tr>
-//         `
-//     }
-//         console.log(elementosTabla)
-//         document.getElementById("usuarios").innerHTML = elementosTabla
-// }
-
-// hay que cambiar lo de arriba para poder mostrar la tabla
-
 // TOMAR DATOS
 function postDatosUsuarios() {
   let datos = {
