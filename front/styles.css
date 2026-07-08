@@ -1,5 +1,10 @@
+@font-face {
+  font-family: citadel;
+  src: url(/recursos/citadel_of_blackrose/Citadel\ of\ Blackrose.ttf);
+}
+
 body{
-    background-image: url(imgs/fondo1.png);
+    background-image: url(/recursos/img/fondo1.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -8,6 +13,22 @@ body{
 
 ::-webkit-scrollbar{
     scrollbar-width: none;
+}
+
+img{
+    border: 0;
+}
+
+h1{
+    font-family: citadel;
+}
+
+h2{
+    font-family: citadel;
+}
+
+h3{
+    font-family: citadel;
 }
 
 table {
@@ -36,6 +57,11 @@ table {
 
 /* ------- LOGIN -------*/
 
+#img-title{
+    width: 1100px;
+    height: 300px;
+}
+
 #MAIN-login{
     text-align: center;
     padding: 50px
@@ -62,16 +88,6 @@ label{
     color: goldenrod;
 
     border: 0;
-}
-
-#title{
-    font-size: 60px;
-    margin: 0;
-    color: antiquewhite;
-}
-
-#inputs-top{
-    padding: 1.5rem;
 }
 
 #buttons-div{
@@ -185,3 +201,77 @@ hr{
     border: 0;
 }
 
+/*----------JUEGO---------*/
+
+#titulo-turno{
+   width: 75%;
+   height: 4rem;
+   margin: auto;
+   background-color: yellow;
+   text-align: center;
+   padding-top: 25px;
+
+   margin-bottom: 3rem;
+   margin-top: 2rem;
+
+   h1{
+    margin: 0;
+   }
+}
+
+#main-game{
+    margin: auto;
+    width: 85%;
+}
+
+#partes-juego{
+    display: flex;
+    gap: 1rem;
+}
+
+#puntaje{
+    background-color: blueviolet;
+
+    height: 25rem;
+    width: 15rem;
+}
+
+#tablon{
+    background-color: brown;
+    width: 50rem;
+    height: 30rem;
+
+    padding: 20px;
+}
+
+.dado{
+    background-color: rgb(255, 255, 255);
+    border: 0;
+    background-image: url(/recursos/img/dado.png);
+
+    height: 100px;
+    width: 100px;
+}
+
+
+#guia{
+    height: 300px;
+    width: 250px;
+    background-color: blue;
+}
+
+#vaso{
+    background-image: url(/recursos/img/vaso-dado.png);
+    height: 200px;
+    width: 200px;
+    background-size: cover;
+
+    background-color: rgba(0, 0, 0, 0);
+    border: 0;
+}
+
+#vaso:hover{
+    background-image: url(/recursos/img/vaso-dado-tirado.png);
+    height: 200px;
+    width: 250px;
+}

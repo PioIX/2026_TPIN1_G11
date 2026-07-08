@@ -10,7 +10,7 @@
   <body>
     <main>
       <div id="MAIN-login">
-        <h1 id="title">Generala</h1>
+        <img src="/recursos/img/titulo.png" id="img-title">
         <section id="Login">
           <div id="inputs-top">
             <h2>¡Bienvenido! Inicie sesión</h2>
@@ -138,7 +138,51 @@
       </div>
 
       <div id="Game" style="display: none;">
+        <div id="main-game">
+          <div id="titulo-turno"> <!--Titulo "Turno de X"-->
+            <h1 id="h1-turno">Turno de <span id="turnoDe">X</span></h1>
+          </div>
+          <div id="partes-juego"> <!-- Resto de las cosas -->
+            <section id="puntaje" on> <!-- coso puntaje -->
+              <div>
 
+              </div>
+            </section>
+
+            <section id="dados"> <!-- seccion dados -->
+              <div id="tablon">
+                <button class="dado" id="dado1"> <!-- Dado 1 -->
+
+                </button>
+                <button class="dado" id="dado2"> <!-- Dado 2 -->
+
+                </button>
+                <button class="dado" id="dado3"> <!-- Dado 3 -->
+
+                </button>
+                <button class="dado" id="dado4"> <!-- Dado 4 -->
+
+                </button>
+                <button class="dado" id="dado5"> <!-- Dado 5 -->
+
+                </button>
+              </div>
+            </section>
+
+            <section id="tirar"> <!-- Seccion vaso y boton para estadisticas -->
+              <div id="guia"> <!-- controles, etc. -->
+
+              </div>
+              <div>
+                <button id="vaso"></button>
+              </div>
+              <div>
+                <button id="boton-estadisticas" onclick="changeScreenUser()">Estadisticas Usuario</button>
+              </div>
+
+            </section>
+          </div>
+        </div>
       </div>
     </main>
     
