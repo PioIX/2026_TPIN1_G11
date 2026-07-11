@@ -287,11 +287,13 @@ function anotarGenerala() {
   }
   if (esGenerala) {
     puntaje[turnoJugador][9] = 50;
+    puntos = 50
   } else {
     puntaje[turnoJugador][9] = 0;
+    puntos = 0
   }
   cambiarTurno()
-  return puntaje[turnoJugador][9]
+  return puntos
 
 }
 
@@ -306,15 +308,17 @@ function anotarGeneralaDoble() {
     }
     if (esGenerala) {
       puntaje[turnoJugador][10] = 50;
+      puntos = 50
     } else {
       puntaje[turnoJugador][10] = 0;
+      puntos = 0
     }
-
   } else {
     puntaje[turnoJugador][10] = 0;
+    puntos = 0
   }
   cambiarTurno()
-  return puntaje[turnoJugador][10]
+  return puntos
 }
 
 function anotarPoker() {
@@ -329,11 +333,13 @@ function anotarPoker() {
     }
     if (contador == 4) {
       puntaje[turnoJugador][8] = 40;
+      puntos = 40
     } else {
       puntaje[turnoJugador][8] = 0;
+      puntos = 0
     }
     cambiarTurno()
-    return puntaje[turnoJugador][8]
+    return puntos
 }
 
 function anotarFull() {
@@ -350,13 +356,34 @@ function anotarFull() {
   }
   if (contador == 3) {
     puntaje[turnoJugador][7] = 30;
+    puntos = 30
   } else {
     puntaje[turnoJugador][7] = 0;
+    puntos = 0
   }
   cambiarTurno()
-  return puntaje[turnoJugador][7]
+  return puntos
 }
 
 function anotarEscalera() {
   let esEscalera = true
+  const escalera1 = [1, 2, 3, 4, 5]
+  const escalera2 = [2, 3, 4, 5, 6]
+  let dadosOrdenados = dados
+  dadosOrdenados.sort((a, b) => a - b)
+  for (let i = 0; i < 4; i++) {
+    if (dadosOrdenados[i] !== escalera1[i] && dadosOrdenados[i] !== escalera2[i]) {
+      esEscalera = false
+      break
+    }
+  }
+  if (esEscalera) {
+    puntaje[turnoJugador][6] = 20;
+    puntos = 20
+  } else {
+    puntaje[turnoJugador][6] = 0;
+    puntos = 0
+  }
+  cambiarTurno()
+  return puntos
 }
