@@ -1,3 +1,13 @@
+let CantTiradas = 1
+let dados = []
+let dadosBloqueados = []
+let turnoJugador1 = true
+let puntaje = [
+  ["1", "2", "3", "4", "5", "6", "escalera", "full", "poker", "generala", "doble"],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+]
+
 async function login(email, contraseña) {
   console.log("entre a login: ", email, contraseña);
 
@@ -215,30 +225,34 @@ async function handleRegister() {
   console.log("Logeado");
 }
 
+// FUNCIONES DADOS
+
 function tirarDados() {
-  let dados = [];
-  for (let i = 1; i < 6; i++) {
-    dados.push(Math.floor(Math.random() * 6) + 1);
-    switch (dados[i - 1]) {
-      case 1:
-        document.getElementById(`dado${i}`).src = "dado_1.jpg";
-        break;
-      case 2:
-        document.getElementById(`dado${i}`).src = "dado_2.jpg";
-        break;
-      case 3:
-        document.getElementById(`dado${i}`).src = "dado_3.jpg";
-        break;
-      case 4:
-        document.getElementById(`dado${i}`).src = "dado_4.jpg";
-        break;
-      case 5:
-        document.getElementById(`dado${i}`).src = "dado_5.jpg";
-        break;
-      case 6:
-        document.getElementById(`dado${i}`).src = "dado_6.jpg";
-        break;
+  if (cantTiradas > 3) {
+    alert("Ya hiciste tres tiradas.")
+  } else {
+    for (let i = 1; i < 6; i++) {
+      if (!dadosBloqueados.includes(i - 1)) {
+        dados[i - 1] = Math.floor(Math.random() * 6) + 1;
+        document.getElementById(`dado${i}`).src = `dado_${dados[i - 1]}.jpg`;
+      }
     }
   }
-  return dados;
+}
+
+// preguntarle a ani si quiere que modifique el html con estos botones para mostrar qué dados seleccionó el usuario
+
+function bloquearDados(dadoSeleccionado) {
+  dadosBloqueados.push(dadoSeleccionado)
+}
+
+function desbloquearDados(dadoSeleccionado) {
+  let index = dadosBloqueados.indexOf(dadoSeleccionado)
+  if (index > -1) {
+    dadosBloqueados.splice(index, 1)
+  }
+}
+
+function anotarPuntaje() {
+  document.getElementById("")
 }
