@@ -266,15 +266,15 @@ function desbloquearDados(dadoSeleccionado) {
 }
 
 function anotarNumero(numero) {
-  let puntaje = 0
+  let puntos = 0
   for (let i = 0; i < dados.length; i++) {
     if (dados[i] === numero) {
-      puntaje += numero
+      puntos += numero
     }
   }
-  puntaje[turnoJugador][numero - 1] = puntaje;
+  puntaje[turnoJugador][numero - 1] = puntos;
   cambiarTurno()
-  return puntaje
+  return puntos
 }
 
 function anotarGenerala() {
@@ -291,16 +291,72 @@ function anotarGenerala() {
     puntaje[turnoJugador][9] = 0;
   }
   cambiarTurno()
+  return puntaje[turnoJugador][9]
+
 }
 
 function anotarGeneralaDoble() {
+  if (puntaje[turnoJugador][9] === 50) {
+    let esGenerala = true
+    for (let i = 0; i < 4; i++) {
+      if (dados[i] !== dados[0]) {
+        esGenerala = false
+        break
+      }
+    }
+    if (esGenerala) {
+      puntaje[turnoJugador][10] = 50;
+    } else {
+      puntaje[turnoJugador][10] = 0;
+    }
+
+  } else {
+    puntaje[turnoJugador][10] = 0;
+  }
+  cambiarTurno()
+  return puntaje[turnoJugador][10]
 }
 
 function anotarPoker() {
+    let esPoker = true
+    let contador = 0
+    for (let i = 0; i < 4; i++) {
+      if (dados[i] == dados[0]) {
+        contador++
+      } else if (dados[i] == dados[1]) {
+        contador++
+      }
+    }
+    if (contador == 4) {
+      puntaje[turnoJugador][8] = 40;
+    } else {
+      puntaje[turnoJugador][8] = 0;
+    }
+    cambiarTurno()
+    return puntaje[turnoJugador][8]
 }
 
 function anotarFull() {
+  let esFull = true
+  let contador = 0
+  for (let i = 0; i < 4; i++) {
+    if (dados[i] == dados[0]) {
+      contador++
+    } else if (dados[i] == dados[1]) {
+      contador++
+    } else if (dados[i] == dados[2]) {
+      contador++
+    }
+  }
+  if (contador == 3) {
+    puntaje[turnoJugador][7] = 30;
+  } else {
+    puntaje[turnoJugador][7] = 0;
+  }
+  cambiarTurno()
+  return puntaje[turnoJugador][7]
 }
 
 function anotarEscalera() {
+  let esEscalera = true
 }
