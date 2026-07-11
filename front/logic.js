@@ -1,7 +1,7 @@
 let CantTiradas = 1
 let dados = []
 let dadosBloqueados = []
-let turnoJugador1 = true
+let turnoJugador = 1
 let puntaje = [
   ["1", "2", "3", "4", "5", "6", "escalera", "full", "poker", "generala", "doble"],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -225,7 +225,19 @@ async function handleRegister() {
   console.log("Logeado");
 }
 
-// FUNCIONES DADOS
+// FUNCIONES JUEGO
+
+function cambiarTurno() {
+  cantTiradas = 1
+  dados = []
+  dadosBloqueados = []
+  if (turnoJugador == 1) {
+    turnoJugador = 2
+  } else {
+    turnoJugador = 1
+  }
+  tirarDados()
+}
 
 function tirarDados() {
   if (cantTiradas > 3) {
@@ -253,6 +265,42 @@ function desbloquearDados(dadoSeleccionado) {
   }
 }
 
-function anotarPuntaje() {
-  document.getElementById("")
+function anotarNumero(numero) {
+  let puntaje = 0
+  for (let i = 0; i < dados.length; i++) {
+    if (dados[i] === numero) {
+      puntaje += numero
+    }
+  }
+  puntaje[turnoJugador][numero - 1] = puntaje;
+  cambiarTurno()
+  return puntaje
+}
+
+function anotarGenerala() {
+  let esGenerala = true
+  for (let i = 0; i < 4; i++) {
+    if (dados[i] !== dados[0]) {
+      esGenerala = false
+      break
+    }
+  }
+  if (esGenerala) {
+    puntaje[turnoJugador][9] = 50;
+  } else {
+    puntaje[turnoJugador][9] = 0;
+  }
+  cambiarTurno()
+}
+
+function anotarGeneralaDoble() {
+}
+
+function anotarPoker() {
+}
+
+function anotarFull() {
+}
+
+function anotarEscalera() {
 }
