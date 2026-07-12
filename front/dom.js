@@ -57,39 +57,10 @@ class Funciones {
       game.style.display = "none";
     }
   }
-
-  // Tabla ESTADISTICAS
-
-  /*TODO ESTO HAY QUE CAMBIARLO PQ NO VAN A SER INPUTS; ES DIRECTO DE LA BBDD/CODIGO*/
-  /*function getPartTotales() {
-    return document.getElementById("inputPartGanadas").value;
+  // FUNCIONES ESTETICAS JUEGO
+  textoTurno(numero){
+    document.getElementById("turnoDe").innerHTML = numero
   }
-
-  function getCantEmpatadas() {
-    return document.getElementById("inputPartPerdidas").value;
-  }
-
-  function getPorcentajeVictorias() {
-    return document.getElementById("inputPorcentajeVictorias").value;
-  }
-
-  function getPuntajeHistorico() {
-    return document.getElementById("inputPuntajeHistorico").value;
-  }
-
-  // Tabla PARTIDAS
-  function getGano() {
-    return document.getElementById("inputGano").value;
-  }
-
-  function getFecha() {
-    return document.getElementById("inputFecha").value; 
-  }
-
-  function getPuntaje() {
-    return document.getElementById("inputPuntaje").value;
-  } */
-
 }
 
 const ui = new Funciones();
