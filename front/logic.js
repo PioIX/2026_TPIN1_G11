@@ -233,8 +233,10 @@ function cambiarTurno() {
   dadosBloqueados = []
   if (turnoJugador == 1) {
     turnoJugador = 2
+    ui.textoTurno(turnoJugador)
   } else {
     turnoJugador = 1
+    ui.textoTurno(turnoJugador)
   }
   tirarDados()
 }
@@ -246,19 +248,29 @@ function tirarDados() {
     for (let i = 1; i < 6; i++) {
       if (!dadosBloqueados.includes(i - 1)) {
         dados[i - 1] = Math.floor(Math.random() * 6) + 1;
-        document.getElementById(`dado${i}`).src = `dado_${dados[i - 1]}.jpg`;
+        document.getElementById(`dado${i}`).src = `dado_${dados[i - 1]}.png`;
       }
     }
   }
 }
 
-// preguntarle a ani si quiere que modifique el html con estos botones para mostrar qué dados seleccionó el usuario
 
-function bloquearDados(dadoSeleccionado) {
+function bloquearDados() {
+
+  elemento = event.target /* esto te deja saber el elemento q lo cliqueo */
+
+  const dadoSeleccionado = elemento.getAttribute('data-id') /* lo en la variable (si es el dado 1, 2, etc.) */
+
   dadosBloqueados.push(dadoSeleccionado)
+  console.log(dadosBloqueados)
 }
 
-function desbloquearDados(dadoSeleccionado) {
+function desbloquearDados() {
+
+  elemento = event.target /* esto te deja saber el elemento q lo cliqueo */
+
+  const dadoSeleccionado = elemento.getAttribute('data-id') /* lo en la variable (si es el dado 1, 2, etc.) */
+
   let index = dadosBloqueados.indexOf(dadoSeleccionado)
   if (index > -1) {
     dadosBloqueados.splice(index, 1)

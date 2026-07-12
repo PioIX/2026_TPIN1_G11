@@ -3,6 +3,21 @@
   src: url(/recursos/citadel_of_blackrose/Citadel\ of\ Blackrose.ttf);
 }
 
+
+.caveat {
+  font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.rock-salt-regular {
+  font-family: "Rock Salt", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 body{
     background-image: url(/recursos/img/fondo1.png);
     background-size: cover;
@@ -18,6 +33,7 @@ body{
 img{
     border: 0;
 }
+
 
 h1{
     font-family: citadel;
@@ -157,6 +173,7 @@ hr{
     height: fit-content;
     width: fit-content;
 
+
     overflow-x: scroll;
 }
 
@@ -207,7 +224,9 @@ hr{
    width: 75%;
    height: 4rem;
    margin: auto;
-   background-color: yellow;
+   background-color: goldenrod;
+   border-top-left-radius: 20px;
+   border-bottom-right-radius: 20px;
    text-align: center;
    padding-top: 25px;
 
@@ -227,37 +246,115 @@ hr{
 #partes-juego{
     display: flex;
     gap: 1rem;
+
+    align-items: center;
 }
 
-#puntaje{
-    background-color: blueviolet;
+#grid-puntaje{
+    display: grid;
+    grid-template-columns: 5rem 6rem 6rem;
+    grid-template-rows: 3rem;
 
-    height: 25rem;
-    width: 15rem;
+    font-family: "Rock Salt", cursive;
+    font-size: 10px;
+
+    div{
+        background-color: #fef5d8;
+        border: 1px solid #bcdddb;
+        text-align: center;
+    }
+
+    button{
+        width:6rem;
+        background-color: transparent;
+        border-radius: 0;
+        border: 00;
+    }
+
+    button:hover{
+        background-color: rgba(211, 187, 155, 0.386);
+    }
+}
+
+
+#puntaje{
+    background-color: #fef5d8;
+    padding: 20px;
+    border-radius: 15px;
+
+    background-image: url(/recursos/img/fondo-div.jpg);
+    background-repeat: repeat-y;
+
+    height: fit-content;
+    width: fit-content;
 }
 
 #tablon{
-    background-color: brown;
+    background-image: url(/recursos/img/fondo-tablero.jpg);
+    background-size: cover;
+
+    border: 3px goldenrod dashed;
+    border-radius: 10px;
+
     width: 50rem;
     height: 30rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 
     padding: 20px;
 }
 
 .dado{
     background-color: rgb(255, 255, 255);
-    border: 0;
+    border: 2px black solid;
     background-image: url(/recursos/img/dado.png);
+
 
     height: 100px;
     width: 100px;
 }
 
+.dado:hover{
+    filter: drop-shadow(0 0 0.75rem white);
+}
+
+#dado1{
+    background-image: url(/recursos/img/dado_1.png);
+    background-size: cover;
+}
+
+#dado2{
+    background-image: url(/recursos/img/dado_2.png);
+    background-size: cover;
+}
+
+#dado3{
+    background-image: url(/recursos/img/dado_3.png);
+    background-size: cover;
+}
+
+#dado4{
+    background-image: url(/recursos/img/dado_4.png);
+    background-size: cover;
+}
+
+#dado5{
+    background-image: url(/recursos/img/dado_5.png);
+    background-size: cover;
+}
+
 
 #guia{
-    height: 300px;
+    height: 320px;
     width: 250px;
-    background-color: blue;
+
+    padding: 1.5rem;
+    background-color: saddlebrown;
+
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 #vaso{
@@ -274,4 +371,54 @@ hr{
     background-image: url(/recursos/img/vaso-dado-tirado.png);
     height: 200px;
     width: 250px;
+}
+
+#boton-estadisticas{
+    border: 0;
+    background-color: goldenrod;
+
+    border-top-left-radius: 20px;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 20px;
+    padding: 5px;
+
+    margin-top: 2rem;
+
+    font-family: citadel;
+    font-size: 20px;
+}
+
+#boton-estadisticas:hover{
+    background-color: rgb(195, 145, 17);
+}
+
+/*---------------ESTADISTICAS---------------*/
+
+#main-estadisticas{
+    width: 70%;
+    margin: auto;
+}
+
+#nombre-perfil{
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+
+    background-color: goldenrod;
+}
+
+#usuario{
+    min-height: 200px;
+    max-height: fit-content;
+    width: 100%;
+
+    padding: 1rem;
+
+    margin-top: 1rem;
+
+    border-radius: 20px;
+    background-color: antiquewhite;
 }

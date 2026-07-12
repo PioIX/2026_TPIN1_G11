@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="styles.css">
     <title>Generala</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
   </head>
 
   <body>
@@ -134,36 +139,92 @@
       </div>
 
       <div id="Stadisticas" style="display: none;">
+        <div id="main-estadisticas">
+          <div id="usuario">
+            <div id="nombre-perfil">
+              <div style="height: 100px; width: 100px; background-color: midnightblue; border-radius: 50%;"></div> <h1>Tus Estadisticas</h1>
+            </div>
+            <div id="tablas-usuario" onload="estadisticasUsuario()">
+              <table id="estadisticas-usuario"></table>
+            </div>
+          </div>
+        </div>
 
       </div>
 
       <div id="Game" style="display: none;">
         <div id="main-game">
           <div id="titulo-turno"> <!--Titulo "Turno de X"-->
-            <h1 id="h1-turno">Turno de <span id="turnoDe">X</span></h1>
+            <h1 id="h1-turno">Turno del Jugador <span id="turnoDe">1</span></h1>
           </div>
           <div id="partes-juego"> <!-- Resto de las cosas -->
             <section id="puntaje" on> <!-- coso puntaje -->
-              <div>
+              <div id="grid-puntaje">
+                <div></div> <!-- este div no tiene nada, es para que la grid funcione -->
+                <div><p style="font-size: 13px;">Jugador 1</p></div>
+                <div><p style="font-size: 13px;">Jugador 2</p></div>
 
+                <div><p>1</p></div> 
+                <div><button id="uno-j1" onclick="anotarNumero(event)"><span id="span-uno-j1"> </span></button></div>
+                <div><button id="uno-j2" onclick="anotarNumero(event)"><span id="span-uno-j2"> </span></button></div>
+
+                <div><p>2</p></div>
+                <div><button id="dos-j1" onclick="anotarNumero(event)"><span id="span-dos-j1"> </span></button></div>
+                <div><button id="dos-j1" onclick="anotarNumero(event)"><span id="span-dos-j1"> </span></button></div>
+                
+                <div><p>3</p></div>
+                <div><button id="tres-j1" onclick="anotarNumero(event)"><span id="span-tres-j1"> </span></button></div>
+                <div><button id="tres-j2" onclick="anotarNumero(event)"><span id="span-tres-j2"> </span></button></div>
+
+                <div><p>4</p></div>
+                <div><button id="cuatro-j1" onclick="anotarNumero(event)"><span id="span-cuatro-j1"> </span></button></div>
+                <div><button id="cuatro-j2" onclick="anotarNumero(event)"><span id="span-cuatro-j2"> </span></button></div>
+
+                <div><p>5</p></div>
+                <div><button id="cinco-j1" onclick="anotarNumero(event)"><span id="span-cinco-j1"> </span></button></div>
+                <div><button id="cinco-j2" onclick="anotarNumero(event)"><span id="span-cinco-j2"> </span></button></div>
+
+                <div><p>6</p></div>
+                <div><button id="seis-j1" onclick="anotarNumero(event)"><span id="span-seis-j1"> </span></button></div>
+                <div><button id="seis-j2" onclick="anotarNumero(event)"><span id="span-seis-j2"> </span></button></div>
+
+                <div><p>Escalera</p></div>
+                <div><button id="escalera-j1" onclick="anotarEscalera(event)"><span id="span-escalera-j1"> </span></button></div>
+                <div><button id="escalera-j2" onclick="anotarEscalera(event)"><span id="span-escalera-j2"> </span></button></div>
+
+                <div><p>Full<br>House</p></div>
+                <div><button id="full-j1" onclick="anotarFull(event)"><span id="span-full-j1"> </span></button></div>
+                <div><button id="full-j2" onclick="anotarFull(event)"><span id="span-full-j2"> </span></button></div>
+
+                <div><p>Poker</p></div>
+                <div><button id="poker-j1" onclick="anotarPoker(event)"><span id="span-poker-j1"> </span></button></div>
+                <div><button id="poker-j2" onclick="anotarPoker(event)"><span id="span-poker-j2"> </span></button></div>
+
+                <div><p>Generala</p></div>
+                <div><button id="generala-j1" onclick="anotarGenerala(event)"><span id="span-generala-j1"> </span></button></div>
+                <div><button id="generala-j2" onclick="anotarGenerala(event)"><span id="span-generala-j2"> </span></button></div>
+
+                <div><p>Doble<br>Generala</p></div>
+                <div><button id="generala-j1" onclick="anotarGeneralaDoble(event)"><span id="span-generalaDoble-j1"> </span></button></div>
+                <div><button id="generala-j2" onclick="anotarGeneralaDoble(event)"><span id="span-generalaDoble-j2"> </span></button></div>
               </div>
             </section>
 
             <section id="dados"> <!-- seccion dados -->
               <div id="tablon">
-                <button class="dado" id="dado1"> <!-- Dado 1 -->
+                <button class="dado" id="dado1" onclick="bloquearDados(event)" ondblclick="desbloquearDados(event)" data-id="1"> <!-- Dado 1 -->
 
                 </button>
-                <button class="dado" id="dado2"> <!-- Dado 2 -->
+                <button class="dado" id="dado2" onclick="bloquearDados(event)" ondblclick="desbloquearDados(event)" data-id="2"> <!-- Dado 2 -->
 
                 </button>
-                <button class="dado" id="dado3"> <!-- Dado 3 -->
+                <button class="dado" id="dado3" onclick="bloquearDados(event)" ondblclick="desbloquearDados(event)" data-id="3"> <!-- Dado 3 -->
 
                 </button>
-                <button class="dado" id="dado4"> <!-- Dado 4 -->
+                <button class="dado" id="dado4" onclick="bloquearDados(event)" ondblclick="desbloquearDados(event)" data-id="4"> <!-- Dado 4 -->
 
                 </button>
-                <button class="dado" id="dado5"> <!-- Dado 5 -->
+                <button class="dado" id="dado5" onclick="bloquearDados(event)" ondblclick="desbloquearDados(event)" data-id="5"> <!-- Dado 5 -->
 
                 </button>
               </div>
@@ -171,10 +232,11 @@
 
             <section id="tirar"> <!-- Seccion vaso y boton para estadisticas -->
               <div id="guia"> <!-- controles, etc. -->
-
+                <h3>Tips y controles</h3>
+                <p>Haz click sobre un dado para bloquearlo, haz doble click para desbloquearlo.<br><br>Los dados bloqueados no van a cambiar si vuelves a tirar tus dados.<br><br>Haz click sobre el espacio vacio en el tablon de puntaje para anotar el puntaje de tus dados.<br><br>Los datos de esta partida solo se guardaran para el usuario loggeado.</p>
               </div>
               <div>
-                <button id="vaso"></button>
+                <button id="vaso" onclick="tirarDados()"></button>
               </div>
               <div>
                 <button id="boton-estadisticas" onclick="changeScreenUser()">Estadisticas Usuario</button>
