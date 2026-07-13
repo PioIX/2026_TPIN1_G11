@@ -94,7 +94,6 @@ app.post("/postPartidas", async function (req, res) {
 // POST PARA EL LOGIN
 app.post("/postLogin", async function (req, res) {
   console.log(req.body);
-  const contraseña = req.body.contraseña;
 
   const respuesta = await realizarQuery(
     `SELECT * FROM Usuarios WHERE email = '${req.body.email}' AND contraseña = '${req.body.contraseña}'`

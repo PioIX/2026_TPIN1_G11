@@ -28,7 +28,7 @@ async function login(email, contraseña) {
     body: JSON.stringify(body),
   };
 
-  const respuesta = await fetch(`//localhost:4000/postLogin`, opciones);
+  const respuesta = await fetch("http://localhost:4000/postLogin", opciones);
   const jsonRes = await respuesta.json();
 
   return jsonRes;
@@ -59,6 +59,7 @@ async function handleLogin() {
     ui.changeScreenGame();
   }
 }
+
 
 async function tablas() {
   let res = await fetch("http://localhost:4000/getUsuarios");
