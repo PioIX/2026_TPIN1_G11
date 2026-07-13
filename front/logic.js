@@ -16,8 +16,8 @@ let puntaje = [
     "generala",
     "doble",
   ],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [null, null, null, null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null, null, null, null],
 ];
 
 function changeScreenUser() {
@@ -245,21 +245,39 @@ async function handleRegister() {
 // FUNCIONES JUEGO
 
 function cambiarTurno() {
-  cantTiradas = 0;
-  dados = [];
-  dadosBloqueados = [];
-
-  console.log(dadosBloqueados);
-  if (turnoJugador == 1) {
-    turnoJugador = 2;
-    ui.textoTurno(turnoJugador);
+  if (puntaje.some((row => row.includes(null)))) {
+    cantTiradas = 0;
+    dados = [];
+    dadosBloqueados = [];
+    if (turnoJugador == 1) {
+      turnoJugador = 2;
+      ui.textoTurno(turnoJugador);
+    } else {
+      turnoJugador = 1;
+      ui.textoTurno(turnoJugador);
+    }
+    ui.limpiarDados();
+    tirarDados();
   } else {
-    turnoJugador = 1;
-    ui.textoTurno(turnoJugador);
+    finJuego();
   }
-  ui.limpiarDados();
-  tirarDados();
-  console.log(dadosBloqueados);
+}
+
+function finJuego() {
+  console.log("fin del juego"); // para saber si funciona la funcion
+  let puntajeJugador1 = 0;
+  let puntajeJugador2 = 0;
+  for (let i = 0; i < 11; i++) {
+    puntajeJugador1 += puntaje[1][i];
+    puntajeJugador2 += puntaje[2][i];
+  }
+  if (puntajeJugador1 > puntajeJugador2) {
+    // preguntarle a ani que quiere poner
+  } else if (puntajeJugador2 > puntajeJugador1) {
+    // preguntarle a ani que quiere poner
+  } else {
+    // preguntarle a ani que quiere poner
+  }
 }
 
 function tirarDados() {
@@ -275,7 +293,6 @@ function tirarDados() {
         }.png')`;
       }
     }
-    console.log(cantTiradas);
     cantTiradas++;
   }
 }
@@ -295,6 +312,18 @@ function bloquearDados(event) {
       dadosBloqueados.splice(index, 1);
     }
   }
+}
+
+function juegoServido() {
+  if (cantTiradas === 1) {
+    return 5;
+  } else {
+    return 0;
+  }
+}
+
+function generalaServida() {
+
 }
 
 function guardarPuntaje(jugador, indice, puntos, id) {
@@ -382,8 +411,8 @@ function anotarPoker(event) {
   let esPoker = Object.values(contador).includes(4);
   if ((jugador === turnoJugador)) {
     if (esPoker) {
-      puntaje[turnoJugador][8] = 40;
-      puntos = 40;
+      puntaje[turnoJugador][8] = 40 + juegoServido();
+      puntos = 40 + juegoServido();
     } else {
       puntaje[turnoJugador][8] = 0;
       puntos = 0;
@@ -405,8 +434,8 @@ function anotarFull(event) {
     let esFull = Object.values(contador).includes(3) && Object.values(contador).includes(2);
     if ((jugador === turnoJugador)) {
       if (esFull) {
-        puntaje[turnoJugador][7] = 30;
-        puntos = 30;
+        puntaje[turnoJugador][7] = 30 + juegoServido();
+        puntos = 30 + juegoServido();
       } else {
         puntaje[turnoJugador][7] = 0;
         puntos = 0;
@@ -428,8 +457,8 @@ function anotarEscalera(event) {
 
   if ((jugador === turnoJugador)) {
     if (esEscalera) {
-      puntaje[turnoJugador][6] = 20;
-      puntos = 20;
+      puntaje[turnoJugador][6] = 20 + juegoServido();
+      puntos = 20 + juegoServido();
     } else {
       puntaje[turnoJugador][6] = 0;
       puntos = 0;
