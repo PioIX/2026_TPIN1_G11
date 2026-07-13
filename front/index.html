@@ -72,7 +72,7 @@
                 <div> <!-- BORRAR -->
                   <h3>Eliminar</h3>
                   <input class="input-admin" id="idEliminarUsuario" placeholder="Ingrese el id del usuario a Eliminar">
-                  <button onclick="eliminarUsuario()">Eliminar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
+                  <button onclick="llamadoDeleteUsuarios()">Eliminar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
                 </div>
                 <hr>
                 <div> <!-- MODIFICAR -->
@@ -85,7 +85,7 @@
                   <input class="input-admin" id="usernameModificarUsuario" type="text" placeholder="ingrese el nombre de usuario al que se va a cambiar">
                   <input class="input-admin" id="contraseñaModificarUsuario" type="text" placeholder="ingrese la contraseña a la que se va a cambiar">
                   <input class="input-admin" id="emailModificarUsuario" type="text" placeholder="ingrese el email al que se va a cambiar">
-                  <button onclick="modificarUsuario()">Modificar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
+                  <button onclick="postDatosUsuarios()">Modificar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
                 </div>
                 <hr>
                 <div> <!-- AGREGAR -->
@@ -95,7 +95,7 @@
                   <input class="input-admin" id="usernameAgregarUsuario" type="text" placeholder="ingrese el nombre">
                   <input class="input-admin" id="contraseñaAgregarUsuario" type="text" placeholder="ingrese la contraseña">
                   <input class="input-admin" id="emailAgregarUsuario" type="text" placeholder="ingrese el email">
-                  <button onclick="agregarUsuario()">Agregar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
+                  <button onclick="putDatosUsuarios()">Agregar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
                 </div>
               </div>
               <div class="admin-seccion"> <!-- funciones para la base de datos de estadisticas -->
@@ -111,13 +111,13 @@
                   <input class="input-admin" id="perdidasModificarEstadisticas" type="number" placeholder="ingrese la contraseña a la que se va a cambiar">
                   <input class="input-admin" id="porcentajeModificarEstadistica" type="text" placeholder="ingrese el email al que se va a cambiar">
                   <input class="input-admin" id="puntajeModificarEstadistica" type="number" placeholder="ingrese el email al que se va a cambiar">
-                  <button onclick="modificarEstadistica()">Modificar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
+                  <button onclick="postDatosEstadisticas()">Modificar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
                 </div>
                 <hr>
                 <div> <!-- BORRAR -->
                   <h3>Eliminar</h3>
                   <input class="input-admin" id="idEliminarEstadistica" placeholder="Ingrese el id de la estadistica a Eliminar">
-                  <button onclick="eliminarEstadistica()">Eliminar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
+                  <button onclick="llamadoDeleteEstadisticas()">Eliminar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
                 </div>
               </div>
               <div class="admin-seccion"> <!-- funciones para la base de datos de partidas -->
@@ -125,7 +125,7 @@
                 <div> <!-- BORRAR -->
                   <h3>Eliminar</h3>
                   <input class="input-admin" id="idEliminarPartida" placeholder="Ingrese el id de la partida a Eliminar">
-                  <button onclick="eliminarPartida()">Eliminar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
+                  <button onclick="llamadoDeletePartidas()">Eliminar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
                 </div>
               </div>
             </section>
