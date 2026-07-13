@@ -1,4 +1,4 @@
-let cantTiradas = 1;
+let cantTiradas = 0;
 let dados = [];
 let dadosBloqueados = [];
 let turnoJugador = 1;
@@ -245,7 +245,7 @@ async function handleRegister() {
 // FUNCIONES JUEGO
 
 function cambiarTurno() {
-  cantTiradas = 1;
+  cantTiradas = 0;
   dados = [];
   dadosBloqueados = [];
 
@@ -257,13 +257,13 @@ function cambiarTurno() {
     turnoJugador = 1;
     ui.textoTurno(turnoJugador);
   }
-  tirarDados();
   ui.limpiarDados();
+  tirarDados();
   console.log(dadosBloqueados);
 }
 
 function tirarDados() {
-  if (cantTiradas > 3) {
+  if (cantTiradas >= 3) {
     alert("Ya hiciste tres tiradas.");
   } else {
     for (let i = 1; i < 6; i++) {
@@ -271,8 +271,7 @@ function tirarDados() {
         dados[i - 1] = Math.floor(Math.random() * 6) + 1;
         document.getElementById(
           `dado${i}`
-        ).style.backgroundImage = `url('/recursos/img/dado_${
-          dados[i - 1]
+        ).style.backgroundImage = `url('/recursos/img/dado_${dados[i - 1]
         }.png')`;
       }
     }
@@ -298,28 +297,26 @@ function bloquearDados(event) {
   }
 }
 
+function guardarPuntaje(jugador, indice, puntos, id) {
+  puntaje[jugador][indice] = puntos;
+  document.getElementById(id).innerHTML = puntos;
+  cambiarTurno();
+}
+
 function anotarNumero(event) {
   let elemento = event.target;
   let numero = parseInt(elemento.getAttribute("data-numero"));
   let jugador = parseInt(elemento.getAttribute("data-jugador"));
-
   let puntos = 0;
-  console.log(numero, "numero");
   for (let i = 0; i < dados.length; i++) {
     if (dados[i] === numero) {
       puntos += numero;
     }
   }
-  console.log(puntos, "puntaje");
-  console.log(jugador, turnoJugador, "jugador/turno");
-  puntaje[jugador][numero - 1] = puntos;
-  console.log(puntaje, "array puntaje");
-  if ((jugador = turnoJugador)) {
-    if (document.getElementById(`span-${numero}-j${jugador}`).innerHTML == "") {
-      document.getElementById(`span-${numero}-j${jugador}`).innerHTML = puntos;
-      cambiarTurno();
-    } else {
-      alert("ya esta escrito el puntaje");
+  if ((jugador === turnoJugador)) {
+    puntaje[jugador][numero - 1] = puntos;
+    if (document.getElementById(`span-${numero}-j${jugador}`).innerHTML === "") {
+      guardarPuntaje(jugador, numero - 1, puntos, `span-${numero}-j${jugador}`);
     }
   }
 }
@@ -328,26 +325,29 @@ function anotarGenerala(event) {
   let elemento = event.target;
   let jugador = parseInt(elemento.getAttribute("data-jugador"));
   let esGenerala = true;
+  let puntos = 0;
   for (let i = 0; i < 5; i++) {
     if (dados[i] !== dados[0]) {
       esGenerala = false;
       break;
     }
   }
-  if (esGenerala) {
-    puntaje[turnoJugador][9] = 50;
-    puntos = 50;
-  } else {
-    puntaje[turnoJugador][9] = 0;
-    puntos = 0;
+  if ((jugador === turnoJugador)) {
+    if (esGenerala) {
+      puntaje[turnoJugador][9] = 50;
+      puntos = 50;
+    } else {
+      puntaje[turnoJugador][9] = 0;
+      puntos = 0;
+    }
+    guardarPuntaje(jugador, 9, puntos, `span-generala-j${jugador}`);
   }
-  document.getElementById(`span-generala-j${jugador}`).innerHTML = puntos;
-  cambiarTurno();
 }
 
 function anotarGeneralaDoble(event) {
   let elemento = event.target;
   let jugador = parseInt(elemento.getAttribute("data-jugador"));
+  let puntos = 0;
   if (puntaje[turnoJugador][9] === 50) {
     let esGenerala = true;
     for (let i = 0; i < 5; i++) {
@@ -356,101 +356,84 @@ function anotarGeneralaDoble(event) {
         break;
       }
     }
-    if (esGenerala) {
-      puntaje[turnoJugador][10] = 100;
-      puntos = 100;
-    } else {
-      puntaje[turnoJugador][10] = 0;
-      puntos = 0;
+    if ((jugador === turnoJugador)) {
+      if (esGenerala) {
+        puntaje[turnoJugador][10] = 100;
+        puntos = 100;
+      } else {
+        puntaje[turnoJugador][10] = 0;
+        puntos = 0;
+      }
+      guardarPuntaje(jugador, 10, puntos, `span-generalaDoble-j${jugador}`);
     }
-  } else {
-    puntaje[turnoJugador][10] = 0;
-    puntos = 0;
+  } else if (jugador === turnoJugador) {
+    guardarPuntaje(jugador, 10, 0, `span-generalaDoble-j${jugador}`);
   }
-  document.getElementById(`span-generalaDoble-j${jugador}`).innerHTML = puntos;
-  cambiarTurno();
 }
 
 function anotarPoker(event) {
   let elemento = event.target;
   let jugador = parseInt(elemento.getAttribute("data-jugador"));
-  let contador = 0;
-  for (let i = 0; i < 5; i++) {
-    if (dados[i] == dados[0]) {
-      contador++;
-    } else if (dados[i] == dados[1]) {
-      contador++;
+  let puntos = 0;
+  let contador = {};
+  for (let i = 0; i < dados.length; i++) {
+    contador[dados[i]] = (contador[dados[i]] || 0) + 1;
+  }
+  let esPoker = Object.values(contador).includes(4);
+  if ((jugador === turnoJugador)) {
+    if (esPoker) {
+      puntaje[turnoJugador][8] = 40;
+      puntos = 40;
+    } else {
+      puntaje[turnoJugador][8] = 0;
+      puntos = 0;
     }
+    guardarPuntaje(jugador, 8, puntos, `span-poker-j${jugador}`);
   }
-  if (contador == 4) {
-    puntaje[turnoJugador][8] = 40;
-    puntos = 40;
-  } else {
-    puntaje[turnoJugador][8] = 0;
-    puntos = 0;
-  }
-  document.getElementById(`span-poker-j${jugador}`).innerHTML = puntos;
-  cambiarTurno();
+
 }
 
 function anotarFull(event) {
   let elemento = event.target;
   let jugador = parseInt(elemento.getAttribute("data-jugador"));
-  let primerNumero = dados[0];
-  let segundoNumero;
-  let contador1 = 0;
-  let contador2 = 0;
+  let puntos = 0;
+  let contador = {};
   for (let i = 0; i < 5; i++) {
-    if (dados[i] != dados[0]) {
-      segundoNumero = dados[i];
-      for (let i = 0; i < 5; i++) {
-        if (dados[i] == primerNumero) {
-          contador1++;
-        } else if (dados[i] == segundoNumero) {
-          contador2++;
-        }
+    for (let i = 0; i < dados.length; i++) {
+      contador[dados[i]] = (contador[dados[i]] || 0) + 1;
+    }
+    let esFull = Object.values(contador).includes(3) && Object.values(contador).includes(2);
+    if ((jugador === turnoJugador)) {
+      if (esFull) {
+        puntaje[turnoJugador][7] = 30;
+        puntos = 30;
+      } else {
+        puntaje[turnoJugador][7] = 0;
+        puntos = 0;
       }
-      break;
+      guardarPuntaje(jugador, 7, puntos, `span-full-j${jugador}`);
     }
   }
-  if (
-    (contador1 == 3 && contador2 == 2) ||
-    (contador1 == 2 && contador2 == 3)
-  ) {
-    puntaje[turnoJugador][7] = 30;
-    puntos = 30;
-  } else {
-    puntaje[turnoJugador][7] = 0;
-    puntos = 0;
-  }
-  document.getElementById(`span-full-j${jugador}`).innerHTML = puntos;
-  cambiarTurno();
 }
 
 function anotarEscalera(event) {
   let elemento = event.target;
   let jugador = parseInt(elemento.getAttribute("data-jugador"));
-  let esEscalera = true;
-  const escalera1 = [1, 2, 3, 4, 5];
-  const escalera2 = [2, 3, 4, 5, 6];
-  let dadosOrdenados = dados;
+  let puntos = 0;
+  const escaleraMenor = [1, 2, 3, 4, 5];
+  const escaleraMayor = [2, 3, 4, 5, 6];
+  let dadosOrdenados = [...dados];
   dadosOrdenados.sort((a, b) => a - b);
-  for (let i = 0; i < 5; i++) {
-    if (
-      dadosOrdenados[i] !== escalera1[i] &&
-      dadosOrdenados[i] !== escalera2[i]
-    ) {
-      esEscalera = false;
-      break;
+  let esEscalera = JSON.stringify(dadosOrdenados) === JSON.stringify(escaleraMenor) || JSON.stringify(dadosOrdenados) === JSON.stringify(escaleraMayor);
+
+  if ((jugador === turnoJugador)) {
+    if (esEscalera) {
+      puntaje[turnoJugador][6] = 20;
+      puntos = 20;
+    } else {
+      puntaje[turnoJugador][6] = 0;
+      puntos = 0;
     }
+    guardarPuntaje(jugador, 6, puntos, `span-escalera-j${jugador}`);
   }
-  if (esEscalera) {
-    puntaje[turnoJugador][6] = 20;
-    puntos = 20;
-  } else {
-    puntaje[turnoJugador][6] = 0;
-    puntos = 0;
-  }
-  document.getElementById(`span-escalera-j${jugador}`).innerHTML = puntos;
-  cambiarTurno();
 }
