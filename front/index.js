@@ -108,6 +108,36 @@ async function recargarEstadisticas() {
   document.getElementById("tabla-estadisticas").innerHTML = elementosTabla2      
 }
 
+async function recargarPartidas() {
+  let res3 = await fetch("http://localhost:4000/getPartidas")
+  let response3 = await res3.json() //Desarmo el JSON a objeto
+  let elementosTabla3 = `
+    <tr>
+     <th>id<th>
+     <th>id_usuario<th>
+     <th>partidas_totales<th>
+     <th>partidas_ganadas<th>
+     <th>partidas_perdidas<th>
+     <th>porcentaje_victorias<th>
+     <th>puntaje_historico<th>
+    </tr>
+    `
+  for (i=0;i < response3.length; i = i + 1){
+    elementosTabla3 += `
+      <tr>
+        <td> ${response3[i].id}</td>
+        <td> ${response3[i].id_usuario}</td>
+        <td> ${response3[i].partidas_totales}</td>
+        <td> ${response3[i].partidas_ganadas}</td>
+        <td> ${response3[i].partidas_perdidas}</td>
+        <td> ${response3[i].porcentaje_victorias}</td>
+        <td> ${response3[i].puntaje_historico}</td>
+      </tr>
+        `
+  }
+  document.getElementById("tabla-partidas").innerHTML = elementosTabla3      
+}
+
 async function llamadoGetUsuarios() {
   const response = await fetch("http://localhost:4000/getUsuarios", {
     method: "GET",
