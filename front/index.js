@@ -37,7 +37,7 @@ function putDatosUsuarios() {
     email: document.getElementById("emailAgregarUsuario").value
   };
 
-  llamadoPutUsuarios(datos);
+  llamadoPostUsuarios(datos);
 }
 
 
