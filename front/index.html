@@ -129,94 +129,33 @@
                 <div>
                   <!-- BORRAR -->
                   <h3>Eliminar</h3>
-                  <input
-                    class="input-admin"
-                    id="idEliminarUsuario"
-                    placeholder="Ingrese el id del usuario a Eliminar"
-                  />
-                  <button onclick="eliminarUsuario()">Eliminar</button>
-                  <!-- CAMBIAR NOMBRE DE FUNCION -->
+                  <input class="input-admin" id="idEliminarUsuario" placeholder="Id del usuario a eliminar">
+                  <button onclick="llamadoDeleteUsuarios()">Eliminar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
                 </div>
                 <hr />
                 <div>
                   <!-- MODIFICAR -->
                   <h3>Modificar</h3>
                   <div>
-                    <input
-                      class="input-id-admin"
-                      id="idModificarUsuario"
-                      placeholder="Ingrese el id del usuario a modificar"
-                    />
+                    <input class="input-id-admin" id="idModificarUsuario" placeholder="Id del usuario a modificar">
                   </div>
-                  <input
-                    class="input-admin"
-                    id="nombreModificarUsuario"
-                    type="text"
-                    placeholder="Ingrese el nombre al que se va a cambiar"
-                  />
-                  <input
-                    class="input-admin"
-                    id="apellidoModificarUsuario"
-                    type="text"
-                    placeholder="Ingrese el apellido al que se va a cambiar"
-                  />
-                  <input
-                    class="input-admin"
-                    id="usernameModificarUsuario"
-                    type="text"
-                    placeholder="ingrese el nombre de usuario al que se va a cambiar"
-                  />
-                  <input
-                    class="input-admin"
-                    id="contraseñaModificarUsuario"
-                    type="text"
-                    placeholder="ingrese la contraseña a la que se va a cambiar"
-                  />
-                  <input
-                    class="input-admin"
-                    id="emailModificarUsuario"
-                    type="text"
-                    placeholder="ingrese el email al que se va a cambiar"
-                  />
-                  <button onclick="modificarUsuario()">Modificar</button>
-                  <!-- CAMBIAR NOMBRE DE FUNCION -->
+                  <input class="input-admin" id="nombreModificarUsuario" type="text" placeholder="Nuevo nombre">
+                  <input class="input-admin" id="apellidoModificarUsuario" type="text" placeholder="Nuevo apellido">
+                  <input class="input-admin" id="usernameModificarUsuario" type="text" placeholder="Nuevo nombre de usuario">
+                  <input class="input-admin" id="contraseñaModificarUsuario" type="text" placeholder="Nueva contraseña">
+                  <input class="input-admin" id="emailModificarUsuario" type="text" placeholder="Nuevo email">
+                  <button onclick="postDatosUsuarios()">Modificar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
                 </div>
                 <hr />
                 <div>
                   <!-- AGREGAR -->
                   <h3>Agregar</h3>
-                  <input
-                    class="input-admin"
-                    id="nombreAgregarUsuario"
-                    type="text"
-                    placeholder="Ingrese el nombre"
-                  />
-                  <input
-                    class="input-admin"
-                    id="apellidoAgregarUsuario"
-                    type="text"
-                    placeholder="Ingrese el apellido"
-                  />
-                  <input
-                    class="input-admin"
-                    id="usernameAgregarUsuario"
-                    type="text"
-                    placeholder="ingrese el nombre"
-                  />
-                  <input
-                    class="input-admin"
-                    id="contraseñaAgregarUsuario"
-                    type="text"
-                    placeholder="ingrese la contraseña"
-                  />
-                  <input
-                    class="input-admin"
-                    id="emailAgregarUsuario"
-                    type="text"
-                    placeholder="ingrese el email"
-                  />
-                  <button onclick="agregarUsuario()">Agregar</button>
-                  <!-- CAMBIAR NOMBRE DE FUNCION -->
+                  <input class="input-admin" id="nombreAgregarUsuario" type="text" placeholder="Nombre">
+                  <input class="input-admin" id="apellidoAgregarUsuario" type="text" placeholder="Apellido">
+                  <input class="input-admin" id="usernameAgregarUsuario" type="text" placeholder="Nombre de usuario">
+                  <input class="input-admin" id="contraseñaAgregarUsuario" type="text" placeholder="Contraseña">
+                  <input class="input-admin" id="emailAgregarUsuario" type="text" placeholder="Email">
+                  <button onclick="putDatosUsuarios()">Agregar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
                 </div>
               </div>
               <div class="admin-seccion">
@@ -226,62 +165,22 @@
                   <h2>Estadisticas</h2>
                   <h3>Modificar</h3>
                   <div>
-                    <input
-                      class="input-id-admin"
-                      id="idModificarEstadistica"
-                      placeholder="Ingrese el id de la estadistica a modificar"
-                    />
+                    <input class="input-id-admin" id="idModificarEstadistica" placeholder="Id de la estadistica a modificar">
                   </div>
-                  <input
-                    class="input-admin"
-                    id="useridModificarEstadistica"
-                    type="text"
-                    placeholder="Ingrese el nombre al que se va a cambiar"
-                  />
-                  <input
-                    class="input-admin"
-                    id="totalModificarEstadistica"
-                    type="number"
-                    placeholder="Ingrese el apellido al que se va a cambiar"
-                  />
-                  <input
-                    class="input-admin"
-                    id="ganadasModificarEstadistica"
-                    type="number"
-                    placeholder="ingrese el nombre de usuario al que se va a cambiar"
-                  />
-                  <input
-                    class="input-admin"
-                    id="perdidasModificarEstadisticas"
-                    type="number"
-                    placeholder="ingrese la contraseña a la que se va a cambiar"
-                  />
-                  <input
-                    class="input-admin"
-                    id="porcentajeModificarEstadistica"
-                    type="text"
-                    placeholder="ingrese el email al que se va a cambiar"
-                  />
-                  <input
-                    class="input-admin"
-                    id="puntajeModificarEstadistica"
-                    type="number"
-                    placeholder="ingrese el email al que se va a cambiar"
-                  />
-                  <button onclick="modificarEstadistica()">Modificar</button>
-                  <!-- CAMBIAR NOMBRE DE FUNCION -->
+                  <input class="input-admin" id="useridModificarEstadistica" type="number" placeholder="Nuevo id de usuario">
+                  <input class="input-admin" id="totalModificarEstadistica" type="number" placeholder="Nuevas partidas totales">
+                  <input class="input-admin" id="ganadasModificarEstadistica" type="number" placeholder="Nuevas partidas ganadas">
+                  <input class="input-admin" id="perdidasModificarEstadisticas" type="number" placeholder="Nuevas partidas perdidas">
+                  <input class="input-admin" id="porcentajeModificarEstadistica" type="float" placeholder="Nuevo porcentaje de victorias">
+                  <input class="input-admin" id="puntajeModificarEstadistica" type="number" placeholder="Nuevo puntaje histórico">
+                  <button onclick="putDatosEstadisticas()">Modificar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
                 </div>
                 <hr />
                 <div>
                   <!-- BORRAR -->
                   <h3>Eliminar</h3>
-                  <input
-                    class="input-admin"
-                    id="idEliminarEstadistica"
-                    placeholder="Ingrese el id de la estadistica a Eliminar"
-                  />
-                  <button onclick="eliminarEstadistica()">Eliminar</button>
-                  <!-- CAMBIAR NOMBRE DE FUNCION -->
+                  <input class="input-admin" id="idEliminarEstadistica" placeholder="Id de la estadistica a Eliminar">
+                  <button onclick="llamadoDeleteEstadisticas()">Eliminar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
                 </div>
               </div>
               <div class="admin-seccion">
@@ -290,28 +189,19 @@
                 <div>
                   <!-- BORRAR -->
                   <h3>Eliminar</h3>
-                  <input
-                    class="input-admin"
-                    id="idEliminarPartida"
-                    placeholder="Ingrese el id de la partida a Eliminar"
-                  />
-                  <button onclick="eliminarPartida()">Eliminar</button>
-                  <!-- CAMBIAR NOMBRE DE FUNCION -->
+                  <input class="input-admin" id="idEliminarPartida" placeholder="Id de la partida a Eliminar">
+                  <button onclick="llamadoDeletePartidas()">Eliminar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
                 </div>
               </div>
             </section>
           </div>
-          <div id="tablas" onload="console.log('loadT')">
-            <!-- Tablas -->
-            <table id="tabla-usuarios">
-              <!-- USUARIOS -->
-            </table>
-            <table id="tabla-estadisticas">
-              <!-- ESTADISTICAS -->
-            </table>
-            <table id="tabla-partidas">
-              <!-- PARTIDAS -->
-            </table>
+          <div id="tablas" onload="console.log('loadT')"> <!-- Tablas -->
+            <table id="tabla-usuarios" ><!-- USUARIOS --></table>
+            <button onclick="recargarUsuarios()">Recargar usuarios</button>
+            <table id="tabla-estadisticas"> <!-- ESTADISTICAS --></table>
+            <button onclick="recargarEstadisticas()">Recargar estadisticas</button>
+            <table id="tabla-partidas"> <!-- PARTIDAS --></table>
+            <button onclick="recargarPartidas()">Recargar partidas</button>
           </div>
         </div>
       </div>

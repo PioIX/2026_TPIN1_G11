@@ -41,10 +41,8 @@ async function login(email, contraseña) {
     body: JSON.stringify(body),
   };
 
-  const respuesta = await fetch(`//localhost:4000/postLogin`, opciones);
+  const respuesta = await fetch("http://localhost:4000/postLogin", opciones);
   const jsonRes = await respuesta.json();
-
-  console.log("res despues de json: ", jsonRes);
 
   return jsonRes;
 }
@@ -75,13 +73,14 @@ async function handleLogin() {
   }
 }
 
+
 async function tablas() {
   let res = await fetch("http://localhost:4000/getUsuarios");
   console.log(res); //Imprimo el JSON que viene crudo
   let response = await res.json(); //Desarmo el JSON a objeto
   let elementosTabla = `
         <tr>
-            <th>id</th>
+            <th>id usuario</th>
             <th>nombre</th>
             <th>apellido</th>
             <th>nombre de usuario</th>
@@ -93,7 +92,7 @@ async function tablas() {
     console.log(response[i]);
     elementosTabla += `
         <tr>
-            <td> ${response[i].id}</td>
+            <td> ${response[i].id_usuario}</td>
             <td> ${response[i].nombre}</td>
             <td> ${response[i].apellido}</td>
             <td> ${response[i].nombre_de_usuario}</td>
