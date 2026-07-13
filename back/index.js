@@ -146,7 +146,7 @@ app.delete("/deleteUsuarios", async function (req, res) {
 app.delete("/deleteEstadisticas", async function (req, res) {
   console.log(req.body);
   const respuesta = await realizarQuery(
-    `DELETE FROM Estadisticas WHERE id_usuario = ${req.body.id_usuario}`
+    `DELETE FROM Estadisticas WHERE id= ${req.body.id}`
   );
   console.log({ respuesta });
   res.send(respuesta);
