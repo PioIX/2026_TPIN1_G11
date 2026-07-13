@@ -248,6 +248,8 @@ function cambiarTurno() {
   cantTiradas = 1;
   dados = [];
   dadosBloqueados = [];
+
+  console.log(dadosBloqueados)
   if (turnoJugador == 1) {
     turnoJugador = 2;
     ui.textoTurno(turnoJugador);
@@ -256,6 +258,8 @@ function cambiarTurno() {
     ui.textoTurno(turnoJugador);
   }
   tirarDados();
+  ui.limpiarDados()
+  console.log(dadosBloqueados)
 }
 
 function tirarDados() {
@@ -264,18 +268,14 @@ function tirarDados() {
   } else {
     for (let i = 1; i < 6; i++) {
       if (!dadosBloqueados.includes(i - 1)) {
-        console.log(dadosBloqueados.includes(i - 1));
         dados[i - 1] = Math.floor(Math.random() * 6) + 1;
-        console.log(dados[i - 1]);
         document.getElementById(
           `dado${i}`
-        ).style.backgroundImage = `url('/recursos/img/dado_${
-          dados[i - 1]
-        }.png')`;
+        ).style.backgroundImage = `url('/recursos/img/dado_${dados[i - 1]
+          }.png')`;
       }
     }
     cantTiradas++;
-    console.log(cantTiradas);
   }
 }
 
@@ -286,16 +286,13 @@ function bloquearDados(event) {
     document.getElementById(`dado${dadoSeleccionado + 1}`).style.filter =
       "drop-shadow(0 0 0.75rem white)";
     dadosBloqueados.push(dadoSeleccionado);
-    console.log(dadosBloqueados);
   } else {
     document.getElementById(`dado${dadoSeleccionado + 1}`).style.filter =
       ""; /* lo en la variable (si es el dado 1, 2, etc.) */
-    console.log(dadosBloqueados);
     let index = dadosBloqueados.indexOf(dadoSeleccionado);
     if (index > -1) {
       dadosBloqueados.splice(index, 1);
     }
-    console.log(dadosBloqueados);
   }
 }
 
@@ -305,21 +302,37 @@ function anotarNumero(event) {
   let jugador = parseInt(elemento.getAttribute("data-jugador"));
 
   let puntos = 0;
+  console.log(numero, "numero")
   for (let i = 0; i < dados.length; i++) {
     if (dados[i] === numero) {
       puntos += numero;
     }
   }
-  console.log(puntos);
+  console.log(puntos, "puntaje");
+  console.log(jugador, turnoJugador, "jugador/turno")
   puntaje[jugador][numero - 1] = puntos;
-  document.getElementById(`span-${numero}-j${jugador}`).innerHTML = puntos;
-  document.getElementById(`span-${numero}-j${jugador}`).style.pointerEvents =
-    "none";
-  cambiarTurno();
-  return puntos;
+  console.log(puntaje, "array puntaje")
+  if (jugador = turnoJugador) {
+    if (document.getElementById(`span-${numero}-j${jugador}`).innerHTML == "") {
+      document.getElementById(`span-${numero}-j${jugador}`).innerHTML = puntos;
+      cambiarTurno();
+    } else {
+      alert("ya esta escrito el puntaje")
+    }
+  }
 }
 
-function anotarGenerala() {
+function checkServido() {
+  if (cantTiradas = 1) {
+    return true
+  } else {
+    return false
+  }
+}
+
+function anotarGenerala(event) {
+  let elemento = event.target;
+  let jugador = parseInt(elemento.getAttribute("data-jugador"));
   let esGenerala = true;
   for (let i = 0; i < 4; i++) {
     if (dados[i] !== dados[0]) {
@@ -328,17 +341,24 @@ function anotarGenerala() {
     }
   }
   if (esGenerala) {
-    puntaje[turnoJugador][9] = 50;
-    puntos = 50;
+    if (checkServido()) {
+      alert("GANASTEEEE AAAAAAAAAAAAAA")
+    } else {
+      puntaje[turnoJugador][9] = 50;
+      puntos = 50;
+      document.getElementById(`span-generala-j${jugador}`).innerHTML = puntos;
+    }
   } else {
     puntaje[turnoJugador][9] = 0;
     puntos = 0;
+    document.getElementById(`span-generala-j${jugador}`).innerHTML = puntos;
   }
   cambiarTurno();
-  return puntos;
 }
 
-function anotarGeneralaDoble() {
+function anotarGeneralaDoble(event) {
+  let elemento = event.target;
+  let jugador = parseInt(elemento.getAttribute("data-jugador"));
   if (puntaje[turnoJugador][9] === 50) {
     let esGenerala = true;
     for (let i = 0; i < 4; i++) {
@@ -348,8 +368,8 @@ function anotarGeneralaDoble() {
       }
     }
     if (esGenerala) {
-      puntaje[turnoJugador][10] = 50;
-      puntos = 50;
+      puntaje[turnoJugador][10] = 100;
+      puntos = 100;
     } else {
       puntaje[turnoJugador][10] = 0;
       puntos = 0;
@@ -358,12 +378,13 @@ function anotarGeneralaDoble() {
     puntaje[turnoJugador][10] = 0;
     puntos = 0;
   }
+  document.getElementById(`span-generalaDoble-j${jugador}`).innerHTML = puntos;
   cambiarTurno();
-  return puntos;
 }
 
-function anotarPoker() {
-  let esPoker = true;
+function anotarPoker(event) {
+  let elemento = event.target;
+  let jugador = parseInt(elemento.getAttribute("data-jugador"));
   let contador = 0;
   for (let i = 0; i < 4; i++) {
     if (dados[i] == dados[0]) {
@@ -373,14 +394,19 @@ function anotarPoker() {
     }
   }
   if (contador == 4) {
-    puntaje[turnoJugador][8] = 40;
-    puntos = 40;
+    if(checkServido()){
+      puntaje[turnoJugador][8] = 45;
+      puntos = 45;
+    } else{
+      puntaje[turnoJugador][8] = 40;
+      puntos = 40;
+    }
   } else {
     puntaje[turnoJugador][8] = 0;
     puntos = 0;
   }
+  document.getElementById(`span-poker-j${jugador}`).innerHTML = puntos;
   cambiarTurno();
-  return puntos;
 }
 
 function anotarFull() {
@@ -398,6 +424,7 @@ function anotarFull() {
   if (contador == 3) {
     puntaje[turnoJugador][7] = 30;
     puntos = 30;
+    
   } else {
     puntaje[turnoJugador][7] = 0;
     puntos = 0;
