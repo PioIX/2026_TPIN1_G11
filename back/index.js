@@ -126,7 +126,7 @@ app.put("/putEstadisticas", async function (req, res) {
 app.put("/putPartidas", async function (req, res) {
   console.log(req.body);
   const respuesta = await realizarQuery(
-    `UPDATE Partidas SET gano = ${req.body.gano}, fecha = '${req.body.fecha}', puntaje = ${req.body.puntaje} WHERE id_partida = ${req.body.id_partida}`
+    `UPDATE Partidas SET gano = ${req.body.gano}, fecha = '${req.body.fecha}', puntaje = ${req.body.puntaje} WHERE id = ${req.body.id}`
   );
   console.log({ respuesta });
   res.send(respuesta);
@@ -145,7 +145,7 @@ app.delete("/deleteUsuarios", async function (req, res) {
 app.delete("/deleteEstadisticas", async function (req, res) {
   console.log(req.body);
   const respuesta = await realizarQuery(
-    `DELETE FROM Estadisticas WHERE id= ${req.body.id}`
+    `DELETE FROM Estadisticas WHERE id = ${req.body.id}`
   );
   console.log({ respuesta });
   res.send(respuesta);
@@ -154,7 +154,7 @@ app.delete("/deleteEstadisticas", async function (req, res) {
 app.delete("/deletePartidas", async function (req, res) {
   console.log(req.body);
   const respuesta = await realizarQuery(
-    `DELETE FROM Partidas WHERE id_partida = ${req.body.id_partida}`
+    `DELETE FROM Partidas WHERE id = ${req.body.id}`
   );
   console.log({ respuesta });
   res.send(respuesta);

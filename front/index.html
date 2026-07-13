@@ -106,17 +106,17 @@
                     <input class="input-id-admin" id="idModificarEstadistica" placeholder="Id de la estadistica a modificar">
                   </div>
                   <input class="input-admin" id="useridModificarEstadistica" type="number" placeholder="Nuevo id de usuario">
-                  <input class="input-admin" id="totalModificarEstadistica" type="number" placeholder="Partidas totales">
-                  <input class="input-admin" id="ganadasModificarEstadistica" type="number" placeholder="Partidas ganadas">
-                  <input class="input-admin" id="perdidasModificarEstadisticas" type="number" placeholder="Partidas perdidas">
-                  <input class="input-admin" id="porcentajeModificarEstadistica" type="float" placeholder="Porcentaje de victorias">
-                  <input class="input-admin" id="puntajeModificarEstadistica" type="number" placeholder="Puntaje histórico">
-                  <button onclick="postDatosEstadisticas()">Modificar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
+                  <input class="input-admin" id="totalModificarEstadistica" type="number" placeholder="Nuevas partidas totales">
+                  <input class="input-admin" id="ganadasModificarEstadistica" type="number" placeholder="Nuevas partidas ganadas">
+                  <input class="input-admin" id="perdidasModificarEstadisticas" type="number" placeholder="Nuevas partidas perdidas">
+                  <input class="input-admin" id="porcentajeModificarEstadistica" type="float" placeholder="Nuevo porcentaje de victorias">
+                  <input class="input-admin" id="puntajeModificarEstadistica" type="number" placeholder="Nuevo puntaje histórico">
+                  <button onclick="putDatosEstadisticas()">Modificar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
                 </div>
                 <hr>
                 <div> <!-- BORRAR -->
                   <h3>Eliminar</h3>
-                  <input class="input-admin" id="idEliminarEstadistica" placeholder="Ingrese el id de la estadistica a Eliminar">
+                  <input class="input-admin" id="idEliminarEstadistica" placeholder="Id de la estadistica a Eliminar">
                   <button onclick="llamadoDeleteEstadisticas()">Eliminar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
                 </div>
               </div>
@@ -124,7 +124,7 @@
                 <h2>Partidas</h2>
                 <div> <!-- BORRAR -->
                   <h3>Eliminar</h3>
-                  <input class="input-admin" id="idEliminarPartida" placeholder="Ingrese el id de la partida a Eliminar">
+                  <input class="input-admin" id="idEliminarPartida" placeholder="Id de la partida a Eliminar">
                   <button onclick="llamadoDeletePartidas()">Eliminar</button> <!-- CAMBIAR NOMBRE DE FUNCION -->
                 </div>
               </div>
@@ -132,8 +132,11 @@
           </div>
           <div id="tablas" onload="console.log('loadT')"> <!-- Tablas -->
             <table id="tabla-usuarios" ><!-- USUARIOS --></table>
+            <button onclick="recargarUsuarios()">Recargar usuarios</button>
             <table id="tabla-estadisticas"> <!-- ESTADISTICAS --></table>
+            <button onclick="recargarEstadisticas()">Recargar estadisticas</button>
             <table id="tabla-partidas"> <!-- PARTIDAS --></table>
+            <button onclick="recargarPartidas()">Recargar partidas</button>
           </div>
         </div>
       </div>

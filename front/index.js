@@ -13,10 +13,8 @@ function postDatosUsuarios() {
   llamadoPostUsuarios(datos);
 }
 
-function postDatosEstadisticas() {
-  let id = document.getElementById("idModificarEstadistica").value;
+function putDatosEstadisticas() {
   let datos = {
-    id,
     id_usuario: document.getElementById("useridModificarEstadistica").value,
     partidas_totales:document.getElementById("totalModificarEstadistica").value,
     partidas_ganadas: document.getElementById("ganadasModificarEstadistica").value,
@@ -25,7 +23,7 @@ function postDatosEstadisticas() {
     puntaje_historico: document.getElementById("puntajeModificarEstadistica").value,
   };
   
-  llamadoPostEstadisticas(datos);
+  llamadoPutEstadisticas(datos);
 }
 
 function putDatosUsuarios() {
@@ -52,6 +50,63 @@ function postLogin() {
 
 
 // LLAMADOS
+async function recargarUsuarios() {
+  let res = await fetch("http://localhost:4000/getUsuarios")
+  let response = await res.json() //Desarmo el JSON a objeto
+  let elementosTabla = `
+      <tr>
+       <th>id_usuario</th>
+        <th>nombre<th>
+        <th>apellido<th>
+        <th>nombre_de_usuario<th>
+        <th>contraseña<th>
+        <th>email<th>
+      </tr>
+    `
+  for (i=0;i < response.length; i = i + 1){
+    elementosTabla += `
+      <tr>
+        <td> ${response[i].id_usuario}</td>
+        <td> ${response[i].nombre}</td>
+        <td> ${response[i].apellido}</td>
+        <td> ${response[i].nombre_de_usuario}</td>
+        <td> ${response[i].contraseña}</td>
+        <td> ${response[i].email}</td>
+      </tr>
+        `
+  }
+  document.getElementById("tabla-usuarios").innerHTML = elementosTabla 
+}
+
+async function recargarEstadisticas() {
+  let res2 = await fetch("http://localhost:4000/getEstadisticas")
+  let response2 = await res2.json() //Desarmo el JSON a objeto
+  let elementosTabla2 = `
+    <tr>
+     <th>id<th>
+     <th>id_usuario<th>
+     <th>partidas_totales<th>
+     <th>partidas_ganadas<th>
+     <th>partidas_perdidas<th>
+     <th>porcentaje_victorias<th>
+     <th>puntaje_historico<th>
+    </tr>
+    `
+  for (i=0;i < response2.length; i = i + 1){
+    elementosTabla2 += `
+      <tr>
+        <td> ${response2[i].id}</td>
+        <td> ${response2[i].id_usuario}</td>
+        <td> ${response2[i].partidas_totales}</td>
+        <td> ${response2[i].partidas_ganadas}</td>
+        <td> ${response2[i].partidas_perdidas}</td>
+        <td> ${response2[i].porcentaje_victorias}</td>
+        <td> ${response2[i].puntaje_historico}</td>
+      </tr>
+        `
+  }
+  document.getElementById("tabla-estadisticas").innerHTML = elementosTabla2      
+}
 
 async function llamadoGetUsuarios() {
   const response = await fetch("http://localhost:4000/getUsuarios", {
