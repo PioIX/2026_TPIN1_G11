@@ -1,4 +1,4 @@
-let CantTiradas = 1
+let cantTiradas = 1
 let dados = []
 let dadosBloqueados = []
 let turnoJugador = 1
@@ -7,6 +7,10 @@ let puntaje = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ]
+
+function changeScreenUser(){ /* lol */
+  ui.changeScreenUser()
+}
 
 async function login(email, contraseña) {
   console.log("entre a login: ", email, contraseña);
@@ -241,6 +245,7 @@ function cambiarTurno() {
   tirarDados()
 }
 
+
 function tirarDados() {
   if (cantTiradas > 3) {
     alert("Ya hiciste tres tiradas.")
@@ -248,9 +253,12 @@ function tirarDados() {
     for (let i = 1; i < 6; i++) {
       if (!dadosBloqueados.includes(i - 1)) {
         dados[i - 1] = Math.floor(Math.random() * 6) + 1;
-        document.getElementById(`dado${i}`).src = `dado_${dados[i - 1]}.png`;
+        console.log(dados[i-1])
+        document.getElementById(`dado${i}`).style.backgroundImage = `url('/recursos/img/dado_${dados[i - 1]}.png')`;
       }
     }
+    cantTiradas++
+    console.log(cantTiradas)
   }
 }
 
