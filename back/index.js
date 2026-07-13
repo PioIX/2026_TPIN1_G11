@@ -76,7 +76,7 @@ app.post("/postUsuarios", async function (req, res) {
 app.post("/postEstadisticas", async function (req, res) {
   console.log(req.body);
   const respuesta = await realizarQuery(
-    `INSERT INTO Estadisticas(partidas_ganadas, partidas_perdidas, partidas_empatadas, porcentaje_victorias, id_usuario) VALUES (${req.body.partidas_ganadas}, ${req.body.partidas_perdidas}, ${req.body.partidas_empatadas}, ${req.body.porcentaje_victorias}, ${req.body.id_usuario})`
+    `INSERT INTO Estadisticas(partidas_ganadas, partidas_perdidas, partidas_totales, porcentaje_victorias, id_usuario) VALUES (${req.body.partidas_ganadas}, ${req.body.partidas_perdidas}, ${req.body.partidas_totales}, ${req.body.porcentaje_victorias}, ${req.body.id_usuario})`
   );
   console.log({ respuesta });
   res.send(respuesta);
@@ -94,7 +94,6 @@ app.post("/postPartidas", async function (req, res) {
 // POST PARA EL LOGIN
 app.post("/postLogin", async function (req, res) {
   console.log(req.body);
-  const contraseña = req.body.contraseña;
 
   const respuesta = await realizarQuery(
     `SELECT * FROM Usuarios WHERE email = '${req.body.email}' AND contraseña = '${req.body.contraseña}'`
@@ -118,7 +117,7 @@ app.put("/putUsuarios", async function (req, res) {
 app.put("/putEstadisticas", async function (req, res) {
   console.log(req.body);
   const respuesta = await realizarQuery(
-    `UPDATE Estadisticas SET partidas_ganadas = ${req.body.partidas_ganadas}, partidas_perdidas = ${req.body.partidas_perdidas}, partidas_empatadas = ${req.body.partidas_empatadas}, porcentaje_victorias = ${req.body.porcentaje_victorias} WHERE id_usuario = ${req.body.id_usuario}`
+    `UPDATE Estadisticas SET partidas_ganadas = ${req.body.partidas_ganadas}, partidas_perdidas = ${req.body.partidas_perdidas}, partidas_totales = ${req.body.partidas_totales}, porcentaje_victorias = ${req.body.porcentaje_victorias} WHERE id_usuario = ${req.body.id_usuario}`
   );
   console.log({ respuesta });
   res.send(respuesta);
@@ -127,7 +126,7 @@ app.put("/putEstadisticas", async function (req, res) {
 app.put("/putPartidas", async function (req, res) {
   console.log(req.body);
   const respuesta = await realizarQuery(
-    `UPDATE Partidas SET gano = ${req.body.gano}, fecha = '${req.body.fecha}', puntaje = ${req.body.puntaje} WHERE id_partida = ${req.body.id_partida}`
+    `UPDATE Partidas SET gano = ${req.body.gano}, fecha = '${req.body.fecha}', puntaje = ${req.body.puntaje} WHERE id = ${req.body.id}`
   );
   console.log({ respuesta });
   res.send(respuesta);
@@ -146,7 +145,7 @@ app.delete("/deleteUsuarios", async function (req, res) {
 app.delete("/deleteEstadisticas", async function (req, res) {
   console.log(req.body);
   const respuesta = await realizarQuery(
-    `DELETE FROM Estadisticas WHERE id_usuario = ${req.body.id_usuario}`
+    `DELETE FROM Estadisticas WHERE id = ${req.body.id}`
   );
   console.log({ respuesta });
   res.send(respuesta);
@@ -155,7 +154,7 @@ app.delete("/deleteEstadisticas", async function (req, res) {
 app.delete("/deletePartidas", async function (req, res) {
   console.log(req.body);
   const respuesta = await realizarQuery(
-    `DELETE FROM Partidas WHERE id_partida = ${req.body.id_partida}`
+    `DELETE FROM Partidas WHERE id = ${req.body.id}`
   );
   console.log({ respuesta });
   res.send(respuesta);
