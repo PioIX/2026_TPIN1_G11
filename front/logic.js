@@ -1,15 +1,28 @@
-let cantTiradas = 1
-let dados = []
-let dadosBloqueados = []
-let turnoJugador = 1
+let cantTiradas = 1;
+let dados = [];
+let dadosBloqueados = [];
+let turnoJugador = 1;
 let puntaje = [
-  ["1", "2", "3", "4", "5", "6", "escalera", "full", "poker", "generala", "doble"],
+  [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "escalera",
+    "full",
+    "poker",
+    "generala",
+    "doble",
+  ],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-]
+];
 
-function changeScreenUser(){ /* lol */
-  ui.changeScreenUser()
+function changeScreenUser() {
+  /* lol */
+  ui.changeScreenUser();
 }
 
 async function login(email, contraseña) {
@@ -232,178 +245,189 @@ async function handleRegister() {
 // FUNCIONES JUEGO
 
 function cambiarTurno() {
-  cantTiradas = 1
-  dados = []
-  dadosBloqueados = []
+  cantTiradas = 1;
+  dados = [];
+  dadosBloqueados = [];
   if (turnoJugador == 1) {
-    turnoJugador = 2
-    ui.textoTurno(turnoJugador)
+    turnoJugador = 2;
+    ui.textoTurno(turnoJugador);
   } else {
-    turnoJugador = 1
-    ui.textoTurno(turnoJugador)
+    turnoJugador = 1;
+    ui.textoTurno(turnoJugador);
   }
-  tirarDados()
+  tirarDados();
 }
-
 
 function tirarDados() {
   if (cantTiradas > 3) {
-    alert("Ya hiciste tres tiradas.")
+    alert("Ya hiciste tres tiradas.");
   } else {
     for (let i = 1; i < 6; i++) {
       if (!dadosBloqueados.includes(i - 1)) {
+        console.log(dadosBloqueados.includes(i - 1));
         dados[i - 1] = Math.floor(Math.random() * 6) + 1;
-        console.log(dados[i-1])
-        document.getElementById(`dado${i}`).style.backgroundImage = `url('/recursos/img/dado_${dados[i - 1]}.png')`;
+        console.log(dados[i - 1]);
+        document.getElementById(
+          `dado${i}`
+        ).style.backgroundImage = `url('/recursos/img/dado_${
+          dados[i - 1]
+        }.png')`;
       }
     }
-    cantTiradas++
-    console.log(cantTiradas)
+    cantTiradas++;
+    console.log(cantTiradas);
   }
 }
 
-
-function bloquearDados() {
-
-  elemento = event.target /* esto te deja saber el elemento q lo cliqueo */
-
-  const dadoSeleccionado = elemento.getAttribute('data-id') /* lo en la variable (si es el dado 1, 2, etc.) */
-
-  dadosBloqueados.push(dadoSeleccionado)
-  console.log(dadosBloqueados)
-}
-
-function desbloquearDados() {
-
-  elemento = event.target /* esto te deja saber el elemento q lo cliqueo */
-
-  const dadoSeleccionado = elemento.getAttribute('data-id') /* lo en la variable (si es el dado 1, 2, etc.) */
-
-  let index = dadosBloqueados.indexOf(dadoSeleccionado)
-  if (index > -1) {
-    dadosBloqueados.splice(index, 1)
+function bloquearDados(event) {
+  let elemento = event.target; /* esto te deja saber el elemento q lo cliqueo */
+  const dadoSeleccionado = parseInt(elemento.getAttribute("data-id"));
+  if (!dadosBloqueados.includes(dadoSeleccionado)) {
+    document.getElementById(`dado${dadoSeleccionado + 1}`).style.filter =
+      "drop-shadow(0 0 0.75rem white)";
+    dadosBloqueados.push(dadoSeleccionado);
+    console.log(dadosBloqueados);
+  } else {
+    document.getElementById(`dado${dadoSeleccionado + 1}`).style.filter =
+      ""; /* lo en la variable (si es el dado 1, 2, etc.) */
+    console.log(dadosBloqueados);
+    let index = dadosBloqueados.indexOf(dadoSeleccionado);
+    if (index > -1) {
+      dadosBloqueados.splice(index, 1);
+    }
+    console.log(dadosBloqueados);
   }
 }
 
-function anotarNumero(numero) {
-  let puntos = 0
+function anotarNumero(event) {
+  let elemento = event.target;
+  let numero = parseInt(elemento.getAttribute("data-numero"));
+  let jugador = parseInt(elemento.getAttribute("data-jugador"));
+
+  let puntos = 0;
   for (let i = 0; i < dados.length; i++) {
     if (dados[i] === numero) {
-      puntos += numero
+      puntos += numero;
     }
   }
-  puntaje[turnoJugador][numero - 1] = puntos;
-  cambiarTurno()
-  return puntos
+  console.log(puntos);
+  puntaje[jugador][numero - 1] = puntos;
+  document.getElementById(`span-${numero}-j${jugador}`).innerHTML = puntos;
+  document.getElementById(`span-${numero}-j${jugador}`).style.pointerEvents =
+    "none";
+  cambiarTurno();
+  return puntos;
 }
 
 function anotarGenerala() {
-  let esGenerala = true
+  let esGenerala = true;
   for (let i = 0; i < 4; i++) {
     if (dados[i] !== dados[0]) {
-      esGenerala = false
-      break
+      esGenerala = false;
+      break;
     }
   }
   if (esGenerala) {
     puntaje[turnoJugador][9] = 50;
-    puntos = 50
+    puntos = 50;
   } else {
     puntaje[turnoJugador][9] = 0;
-    puntos = 0
+    puntos = 0;
   }
-  cambiarTurno()
-  return puntos
-
+  cambiarTurno();
+  return puntos;
 }
 
 function anotarGeneralaDoble() {
   if (puntaje[turnoJugador][9] === 50) {
-    let esGenerala = true
+    let esGenerala = true;
     for (let i = 0; i < 4; i++) {
       if (dados[i] !== dados[0]) {
-        esGenerala = false
-        break
+        esGenerala = false;
+        break;
       }
     }
     if (esGenerala) {
       puntaje[turnoJugador][10] = 50;
-      puntos = 50
+      puntos = 50;
     } else {
       puntaje[turnoJugador][10] = 0;
-      puntos = 0
+      puntos = 0;
     }
   } else {
     puntaje[turnoJugador][10] = 0;
-    puntos = 0
+    puntos = 0;
   }
-  cambiarTurno()
-  return puntos
+  cambiarTurno();
+  return puntos;
 }
 
 function anotarPoker() {
-    let esPoker = true
-    let contador = 0
-    for (let i = 0; i < 4; i++) {
-      if (dados[i] == dados[0]) {
-        contador++
-      } else if (dados[i] == dados[1]) {
-        contador++
-      }
+  let esPoker = true;
+  let contador = 0;
+  for (let i = 0; i < 4; i++) {
+    if (dados[i] == dados[0]) {
+      contador++;
+    } else if (dados[i] == dados[1]) {
+      contador++;
     }
-    if (contador == 4) {
-      puntaje[turnoJugador][8] = 40;
-      puntos = 40
-    } else {
-      puntaje[turnoJugador][8] = 0;
-      puntos = 0
-    }
-    cambiarTurno()
-    return puntos
+  }
+  if (contador == 4) {
+    puntaje[turnoJugador][8] = 40;
+    puntos = 40;
+  } else {
+    puntaje[turnoJugador][8] = 0;
+    puntos = 0;
+  }
+  cambiarTurno();
+  return puntos;
 }
 
 function anotarFull() {
-  let esFull = true
-  let contador = 0
+  let esFull = true;
+  let contador = 0;
   for (let i = 0; i < 4; i++) {
     if (dados[i] == dados[0]) {
-      contador++
+      contador++;
     } else if (dados[i] == dados[1]) {
-      contador++
+      contador++;
     } else if (dados[i] == dados[2]) {
-      contador++
+      contador++;
     }
   }
   if (contador == 3) {
     puntaje[turnoJugador][7] = 30;
-    puntos = 30
+    puntos = 30;
   } else {
     puntaje[turnoJugador][7] = 0;
-    puntos = 0
+    puntos = 0;
   }
-  cambiarTurno()
-  return puntos
+  cambiarTurno();
+  return puntos;
 }
 
 function anotarEscalera() {
-  let esEscalera = true
-  const escalera1 = [1, 2, 3, 4, 5]
-  const escalera2 = [2, 3, 4, 5, 6]
-  let dadosOrdenados = dados
-  dadosOrdenados.sort((a, b) => a - b)
+  let esEscalera = true;
+  const escalera1 = [1, 2, 3, 4, 5];
+  const escalera2 = [2, 3, 4, 5, 6];
+  let dadosOrdenados = dados;
+  dadosOrdenados.sort((a, b) => a - b);
   for (let i = 0; i < 4; i++) {
-    if (dadosOrdenados[i] !== escalera1[i] && dadosOrdenados[i] !== escalera2[i]) {
-      esEscalera = false
-      break
+    if (
+      dadosOrdenados[i] !== escalera1[i] &&
+      dadosOrdenados[i] !== escalera2[i]
+    ) {
+      esEscalera = false;
+      break;
     }
   }
   if (esEscalera) {
     puntaje[turnoJugador][6] = 20;
-    puntos = 20
+    puntos = 20;
   } else {
     puntaje[turnoJugador][6] = 0;
-    puntos = 0
+    puntos = 0;
   }
-  cambiarTurno()
-  return puntos
+  cambiarTurno();
+  return puntos;
 }
