@@ -76,7 +76,7 @@ app.post("/postUsuarios", async function (req, res) {
 app.post("/postEstadisticas", async function (req, res) {
   console.log(req.body);
   const respuesta = await realizarQuery(
-    `INSERT INTO Estadisticas(partidas_ganadas, partidas_perdidas, partidas_empatadas, porcentaje_victorias, id_usuario) VALUES (${req.body.partidas_ganadas}, ${req.body.partidas_perdidas}, ${req.body.partidas_empatadas}, ${req.body.porcentaje_victorias}, ${req.body.id_usuario})`
+    `INSERT INTO Estadisticas(partidas_ganadas, partidas_perdidas, partidas_totales, porcentaje_victorias, id_usuario) VALUES (${req.body.partidas_ganadas}, ${req.body.partidas_perdidas}, ${req.body.partidas_totales}, ${req.body.porcentaje_victorias}, ${req.body.id_usuario})`
   );
   console.log({ respuesta });
   res.send(respuesta);
@@ -117,7 +117,7 @@ app.put("/putUsuarios", async function (req, res) {
 app.put("/putEstadisticas", async function (req, res) {
   console.log(req.body);
   const respuesta = await realizarQuery(
-    `UPDATE Estadisticas SET partidas_ganadas = ${req.body.partidas_ganadas}, partidas_perdidas = ${req.body.partidas_perdidas}, partidas_empatadas = ${req.body.partidas_empatadas}, porcentaje_victorias = ${req.body.porcentaje_victorias} WHERE id_usuario = ${req.body.id_usuario}`
+    `UPDATE Estadisticas SET partidas_ganadas = ${req.body.partidas_ganadas}, partidas_perdidas = ${req.body.partidas_perdidas}, partidas_totales = ${req.body.partidas_totales}, porcentaje_victorias = ${req.body.porcentaje_victorias} WHERE id_usuario = ${req.body.id_usuario}`
   );
   console.log({ respuesta });
   res.send(respuesta);
