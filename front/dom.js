@@ -53,7 +53,7 @@ class Funciones {
       estadisticas.style.display = "none";
     }
     else {
-      estadisticas.style.display = "";
+      estadisticas.style.display = "block";
       game.style.display = "none";
     }
   }
