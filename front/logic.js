@@ -328,7 +328,7 @@ function anotarGenerala(event) {
   let elemento = event.target;
   let jugador = parseInt(elemento.getAttribute("data-jugador"));
   let esGenerala = true;
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 5; i++) {
     if (dados[i] !== dados[0]) {
       esGenerala = false;
       break;
@@ -350,7 +350,7 @@ function anotarGeneralaDoble(event) {
   let jugador = parseInt(elemento.getAttribute("data-jugador"));
   if (puntaje[turnoJugador][9] === 50) {
     let esGenerala = true;
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
       if (dados[i] !== dados[0]) {
         esGenerala = false;
         break;
@@ -375,7 +375,7 @@ function anotarPoker(event) {
   let elemento = event.target;
   let jugador = parseInt(elemento.getAttribute("data-jugador"));
   let contador = 0;
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 5; i++) {
     if (dados[i] == dados[0]) {
       contador++;
     } else if (dados[i] == dados[1]) {
@@ -400,7 +400,7 @@ function anotarFull(event) {
   let segundoNumero;
   let contador1 = 0;
   let contador2 = 0;
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 5; i++) {
     if (dados[i] != dados[0]) {
       segundoNumero = dados[i];
       for (let i = 0; i < 5; i++) {
@@ -413,7 +413,6 @@ function anotarFull(event) {
       break;
     }
   }
-  console.log(primerNumero, segundoNumero, contador1, contador2);
   if (
     (contador1 == 3 && contador2 == 2) ||
     (contador1 == 2 && contador2 == 3)
@@ -436,7 +435,7 @@ function anotarEscalera(event) {
   const escalera2 = [2, 3, 4, 5, 6];
   let dadosOrdenados = dados;
   dadosOrdenados.sort((a, b) => a - b);
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 5; i++) {
     if (
       dadosOrdenados[i] !== escalera1[i] &&
       dadosOrdenados[i] !== escalera2[i]
