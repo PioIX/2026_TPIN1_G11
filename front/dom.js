@@ -61,6 +61,14 @@ class Funciones {
   textoTurno(numero){
     document.getElementById("turnoDe").innerHTML = numero
   }
+
+  limpiarDados(){
+    document.getElementById("dado1").style.filter =""
+    document.getElementById("dado2").style.filter =""
+    document.getElementById("dado3").style.filter =""
+    document.getElementById("dado4").style.filter =""
+    document.getElementById("dado5").style.filter =""
+  }
 }
 
 const ui = new Funciones();
