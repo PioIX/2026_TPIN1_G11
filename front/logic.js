@@ -282,6 +282,7 @@ function finJuego() {
     usuarioGano = false;
     document.getElementById("h1-turno").innerHTML = "¡ empate !"
     ui.animacionGanar()
+  }
 }
 
 function tirarDados() {
