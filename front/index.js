@@ -260,7 +260,7 @@ async function llamadoPutEstadisticas(datos) {
 
 
 async function llamadoDeleteUsuarios() {
-  let id_usuario = document.getElementById("idEliminarUsuario").value; // REEMPLAZAR con el id que pongan Baldesari y Kutianski
+  let id_usuario = document.getElementById("idEliminarUsuario").value;
   const response = await fetch("http://localhost:4000/deleteUsuarios", {
     method: "DELETE",
     headers: {
@@ -274,7 +274,7 @@ async function llamadoDeleteUsuarios() {
 }
 
 async function llamadoDeleteEstadisticas() {
-  let id = document.getElementById("idEliminarEstadistica").value; // REEMPLAZAR con el id que pongan Baldesari y Kutianski
+  let id = document.getElementById("idEliminarEstadistica").value;
   const response = await fetch("http://localhost:4000/deleteEstadisticas", {
     method: "DELETE",
     headers: {
@@ -286,7 +286,7 @@ async function llamadoDeleteEstadisticas() {
 }
 
 async function llamadoDeletePartidas() {
-  let id = document.getElementById("idEliminarPartida").value; // REEMPLAZAR con el id que pongan Baldesari y Kutianski
+  let id = document.getElementById("idEliminarPartida").value;
   const response = await fetch("http://localhost:4000/deletePartidas", {
     method: "DELETE",
     headers: {
