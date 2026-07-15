@@ -271,11 +271,14 @@ function finJuego() {
     puntajeJugador2 += puntaje[2][i];
   }
   if (puntajeJugador1 > puntajeJugador2) {
-    // preguntarle a ani que quiere poner
+    ui.animacionGanar()
+    document.getElementById("h1-turno").innerHTML = "Ganador: ¡ Jugador 1 !"
   } else if (puntajeJugador2 > puntajeJugador1) {
-    // preguntarle a ani que quiere poner
+    ui.animacionGanar()
+    document.getElementById("h1-turno").innerHTML = "Ganador: ¡ Jugador 2 !"
   } else {
-    // preguntarle a ani que quiere poner
+    document.getElementById("h1-turno").innerHTML = "¡ empate !"
+    ui.animacionGanar()
   }
 }
 

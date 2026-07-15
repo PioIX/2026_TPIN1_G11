@@ -224,7 +224,14 @@ hr{
    width: 75%;
    height: 4rem;
    margin: auto;
+
    background-color: goldenrod;
+   animation-name: "";
+   animation-iteration-count: infinite;
+   animation-duration: 1s;
+   animation-timing-function: ease-in-out;
+   animation-direction: alternate;
+
    border-top-left-radius: 20px;
    border-bottom-right-radius: 20px;
    text-align: center;
@@ -323,26 +330,57 @@ hr{
 #dado1{
     background-image: url(/recursos/img/dado_1.png);
     background-size: cover;
+
+    rotate: 0turn;
+    animation-name: "";
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
 }
 
 #dado2{
     background-image: url(/recursos/img/dado_2.png);
     background-size: cover;
+
+    animation-name: "";
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
 }
 
 #dado3{
     background-image: url(/recursos/img/dado_3.png);
     background-size: cover;
+
+    animation-name: "";
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
 }
 
 #dado4{
     background-image: url(/recursos/img/dado_4.png);
     background-size: cover;
+
+    animation-name: "";
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
 }
 
 #dado5{
     background-image: url(/recursos/img/dado_5.png);
     background-size: cover;
+
+    animation-name: "";
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
 }
 
 
@@ -421,4 +459,19 @@ hr{
 
     border-radius: 20px;
     background-color: antiquewhite;
+}
+
+@keyframes winAnimation-div {
+  0% {background-color: red;}
+  20% {background-color: yellow;}
+  40%{background-color: greenyellow;}
+  60%{background-color: blue;}
+  80%{background-color: purple;}
+  100%{background-color: palevioletred;}
+}
+
+@keyframes winAnimation-dados {
+    0%{transform: rotate(0turn);}
+    50%{transform: rotate(0.25turn);}
+    100%{transform: rotate(-0.25turn);}
 }
