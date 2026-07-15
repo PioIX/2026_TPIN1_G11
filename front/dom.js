@@ -69,6 +69,17 @@ class Funciones {
     document.getElementById("dado4").style.filter =""
     document.getElementById("dado5").style.filter =""
   }
+
+  animacionGanar(){
+    document.getElementById("dado1").style.animationName ="winAnimation-dados"
+    document.getElementById("dado2").style.animationName ="winAnimation-dados"
+    document.getElementById("dado3").style.animationName ="winAnimation-dados"
+    document.getElementById("dado4").style.animationName ="winAnimation-dados"
+    document.getElementById("dado5").style.animationName ="winAnimation-dados"
+
+    document.getElementById("titulo-turno").style.backgroundColor ="red"
+    document.getElementById("titulo-turno").style.animationName ="winAnimation-div"
+  }
 }
 
 const ui = new Funciones();

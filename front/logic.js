@@ -263,7 +263,6 @@ function cambiarTurno() {
 }
 
 function finJuego() {
-  console.log("fin del juego"); // para saber si funciona la funcion
   let puntajeJugador1 = 0;
   let puntajeJugador2 = 0;
   let usuarioGano;
@@ -273,15 +272,16 @@ function finJuego() {
   }
   if (puntajeJugador1 > puntajeJugador2) {
     usuarioGano = true;
-    // preguntarle a ani que quiere poner
+    ui.animacionGanar()
+    document.getElementById("h1-turno").innerHTML = "Ganador: ¡ Jugador 1 !"
   } else if (puntajeJugador2 > puntajeJugador1) {
     usuarioGano = false;
-    // preguntarle a ani que quiere poner
+    ui.animacionGanar()
+    document.getElementById("h1-turno").innerHTML = "Ganador: ¡ Jugador 2 !"
   } else {
     usuarioGano = false;
-    // preguntarle a ani que quiere poner
-  }
-  // llamadoPostPartidas(usuarioGano, `"${date.getFullYear()}"-"${date.getMonth()}"-"${date.getDate()}"`, puntajeJugador1, );
+    document.getElementById("h1-turno").innerHTML = "¡ empate !"
+    ui.animacionGanar()
 }
 
 function tirarDados() {

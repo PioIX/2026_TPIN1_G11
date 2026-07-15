@@ -1,3 +1,13 @@
+window.addEventListener("load", (event) => {
+  new cursoreffects.fairyDustCursor();
+}); //EFECTO DE MOUSE
+let cursorEffect = new fairyDustCursor();
+new cursoreffects.fairyDustCursor({
+  colors: ["#ff0000", "#ffee00", "#09ff00", "#00eeff", "#3700ff", "#b700ff"],
+  fairySymbol: "★",
+});
+
+
 // TOMAR DATOS
 function postDatosUsuarios() {
   let id_usuario = document.getElementById("idModificarUsuario").value;
