@@ -263,23 +263,25 @@ function cambiarTurno() {
 }
 
 function finJuego() {
-  console.log("fin del juego"); // para saber si funciona la funcion
   let puntajeJugador1 = 0;
   let puntajeJugador2 = 0;
+  let usuarioGano;
   for (let i = 0; i < 11; i++) {
     puntajeJugador1 += puntaje[1][i];
     puntajeJugador2 += puntaje[2][i];
   }
   if (puntajeJugador1 > puntajeJugador2) {
+    usuarioGano = true;
     ui.animacionGanar()
     document.getElementById("h1-turno").innerHTML = "Ganador: ¡ Jugador 1 !"
   } else if (puntajeJugador2 > puntajeJugador1) {
+    usuarioGano = false;
     ui.animacionGanar()
     document.getElementById("h1-turno").innerHTML = "Ganador: ¡ Jugador 2 !"
   } else {
+    usuarioGano = false;
     document.getElementById("h1-turno").innerHTML = "¡ empate !"
     ui.animacionGanar()
-  }
 }
 
 function tirarDados() {
@@ -325,7 +327,13 @@ function juegoServido() {
 }
 
 function generalaServida() {
-
+  if (cantTiradas === 1) {
+    for (let i = 1; i < 3; i++) {
+      for (let j = 0; j < puntaje[i].length; j++) {
+        puntaje[i][j] = 0;
+      }
+    }
+  }
 }
 
 function guardarPuntaje(jugador, indice, puntos, id) {
@@ -365,6 +373,7 @@ function anotarGenerala(event) {
   }
   if ((jugador === turnoJugador)) {
     if (esGenerala) {
+      generalaServida();
       puntaje[turnoJugador][9] = 50;
       puntos = 50;
     } else {
@@ -389,6 +398,7 @@ function anotarGeneralaDoble(event) {
     }
     if ((jugador === turnoJugador)) {
       if (esGenerala) {
+        generalaServida();
         puntaje[turnoJugador][10] = 100;
         puntos = 100;
       } else {
